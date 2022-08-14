@@ -1,6 +1,6 @@
 {
-    "name": "boilerplate",
-    "version": "3.3.0",
+    "name": "kontan-app",
+    "version": "0.1.0",
     "private": true,
     "scripts": {
         "android": "react-native run-android",
@@ -22,8 +22,10 @@
         "react": "^18.2.0",
         "react-i18next": "^11.16.7",
         "react-native": "^0.69.4",
+        "react-native-device-info": "^10.0.2",
         "react-native-flipper": "^0.143.0",
         "react-native-gesture-handler": "^2.4.1",
+        "react-native-localize": "^2.2.2",
         "react-native-reanimated": "^2.8.0",
         "react-native-safe-area-context": "^4.2.4",
         "react-native-screens": "^3.13.1",

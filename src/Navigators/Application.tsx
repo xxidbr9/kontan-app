@@ -6,6 +6,7 @@ import { StartupContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import MainNavigator from './Main'
 import { navigationRef } from './utils'
+import { ROUTE_PATH } from '@/routers'
 
 const Stack = createStackNavigator()
 
@@ -19,9 +20,9 @@ const ApplicationNavigator = () => {
       <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
         <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Startup" component={StartupContainer} />
+          <Stack.Screen name={ROUTE_PATH.STARTUP} component={StartupContainer} />
           <Stack.Screen
-            name="Main"
+            name={ROUTE_PATH.MAIN}
             component={MainNavigator}
             options={{
               animationEnabled: false,

@@ -1,0 +1,12 @@
+{
+  "welcome": "Selamat Datang di  React Native instand_login_example by TheCodingMachine",
+  "actions": {
+    "continue": "Lanjutkan"
+  },
+  "example": {
+    "helloUser": "Hy Saya user palsu, nama saya {{name}}",
+    "labels": {
+      "userId": "Masukan user id"
+    }
+  }
+}

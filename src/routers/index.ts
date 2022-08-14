@@ -1,0 +1,1 @@
+export { default as ROUTE_PATH } from './constant'

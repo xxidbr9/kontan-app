@@ -27,9 +27,15 @@ export const NavigationColors = {
  * FontSize
  */
 export const FontSize = {
-  small: 16,
-  regular: 20,
-  large: 40,
+  xSmall: 12,
+  small: 14,
+  regular: 16,
+  semiMedium: 18,
+  medium: 20,
+  xMedium: 24,
+  semiLarge: 28,
+  large: 32,
+  xLarge: 36,
 }
 
 /**
