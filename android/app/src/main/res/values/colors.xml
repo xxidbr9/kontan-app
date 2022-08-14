@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="splashscreen_bg">#fbd104</color>
+    <color name="splashscreen_bg">#FCD205</color>
+    <color name="bootsplash_background">#FCD205</color>
 </resources>

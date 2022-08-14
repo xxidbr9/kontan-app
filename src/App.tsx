@@ -7,6 +7,7 @@ import ApplicationNavigator from '@/Navigators/Application'
 import './I18n'
 import { useTranslation } from 'react-i18next'
 import * as RNLocalize from "react-native-localize";
+import RNBootSplash from "react-native-bootsplash";
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
   useEffect(() => {
     const locales = RNLocalize.getLocales();
     if (locales.length > 0) i18n.changeLanguage(locales[0].languageCode);
+    RNBootSplash.hide({ fade: true }); 
   }, [])
 
   return (

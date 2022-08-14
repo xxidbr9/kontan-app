@@ -16,6 +16,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* kontanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* kontanTests.m */; };
+		58BB105228A8B6D5007A0EF4 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58BB105128A8B6D5007A0EF4 /* BootSplash.storyboard */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		833F2006FE004CFBA319C9F2 /* libPods-kontan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE8F60935CC7F1EA8FB7E0E /* libPods-kontan.a */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		2D02E47B1E0B4A5D006451C7 /* kontan-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kontan-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* kontan-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kontan-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E780CE724C60CB827C553 /* Pods-kontan-kontanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan-kontanTests.debug.xcconfig"; path = "Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests.debug.xcconfig"; sourceTree = "<group>"; };
+		58BB105128A8B6D5007A0EF4 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = kontan/BootSplash.storyboard; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = kontan/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CE8F60935CC7F1EA8FB7E0E /* libPods-kontan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kontan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		968A20F8BD0245E30FBD22A5 /* Pods-kontan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan.release.xcconfig"; path = "Target Support Files/Pods-kontan/Pods-kontan.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				58BB105128A8B6D5007A0EF4 /* BootSplash.storyboard */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -323,6 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58BB105228A8B6D5007A0EF4 /* BootSplash.storyboard in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);

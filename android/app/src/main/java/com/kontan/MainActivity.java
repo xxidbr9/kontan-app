@@ -6,6 +6,8 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import android.content.Intent;
 import android.content.res.Configuration;
+import com.zoontek.rnbootsplash.RNBootSplash;
+
 
 public class MainActivity extends ReactActivity {
 
@@ -21,6 +23,7 @@ public class MainActivity extends ReactActivity {
   // for react-native-screens
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    RNBootSplash.init(this);
     super.onCreate(null);
   }
 

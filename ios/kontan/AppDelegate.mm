@@ -1,4 +1,6 @@
 #import "AppDelegate.h"
+// custom imports
+#import "RNBootSplash.h"
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -15,6 +17,8 @@
 #import <ReactCommon/RCTTurboModuleManager.h>
 
 #import <react/config/ReactNativeConfig.h>
+
+
 
 static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
@@ -57,6 +61,12 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  // custom modules
+  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
+
+  // end custom modules
+
   return YES;
 }
 
