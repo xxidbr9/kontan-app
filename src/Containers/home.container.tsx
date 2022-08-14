@@ -3,6 +3,9 @@ import React from 'react'
 import { useTheme } from '@/Hooks'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
+// import ReceiveIcon from '@/Assets/Svg/Receive.icon'
+// import OutIcon from '@/Assets/Svg/Out.icon'
+import chroma from 'chroma-js'
 
 const HomeContainer = () => {
   const { Colors, MetricsSizes, Fonts, Gutters } = useTheme()
@@ -22,7 +25,7 @@ const HomeContainer = () => {
         </SafeAreaView>
         <View style={[{ position: "absolute", width: "100%", flex: 1, top: 180 }]}>
           <View style={[{ marginHorizontal: 24, padding: 16, backgroundColor: Colors.white, borderRadius: 12 }]}>
-            <Text style={[Fonts.textRegular]}>Rp. 10.000.000</Text>
+            {/* <RoundIconRocket type='in' /> */}
           </View>
         </View>
       </View>
@@ -31,6 +34,17 @@ const HomeContainer = () => {
 }
 
 
+// const RoundIconRocket = (props: { type: "in" | "out" }) => {
+//   const color: string = props.type === "in" ? useTheme().Colors.primary : useTheme().Colors.error
+//   const icon: JSX.Element = props.type === "in" ? <ReceiveIcon color={color} /> : <OutIcon color={color} />
+//   const backgroundColor: string = chroma(color).alpha(.1) as unknown as string
+
+//   return (
+//     <View style={[{ flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor }]}>
+//       {icon}
+//     </View>
+//   )
+// }
 
 const homeStyle = StyleSheet.create({
   bannerHero: {

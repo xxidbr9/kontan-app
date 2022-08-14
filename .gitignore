@@ -30,6 +30,7 @@ build/
 local.properties
 *.iml
 *.hprof
+index.android.bundle
 
 # node.js
 #
@@ -61,3 +62,7 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
+
+
+# React Navigation assets
+node_modules_reactnavigation_elements_src_*.png
