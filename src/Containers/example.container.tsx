@@ -66,7 +66,7 @@ const ExampleContainer = () => {
         <TextInput
           onChangeText={setUserId}
           editable={!isLoading}
-          keyboardType={'number-pad'}
+          keyboardType={'numeric'}
           maxLength={1}
           value={userId}
           selectTextOnFocus

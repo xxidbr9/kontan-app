@@ -8,11 +8,12 @@ import { navigateAndSimpleReset } from '@/Navigators/utils'
 import { ROUTE_PATH } from '@/routers'
 
 const StartupContainer = () => {
-  const { Layout, Gutters, Fonts } = useTheme()
+  const { Layout, Gutters, Fonts, Colors } = useTheme()
 
   const { t } = useTranslation()
-
+  
   const init = async () => {
+    
     await new Promise(resolve =>
       setTimeout(() => {
         resolve(true)
@@ -27,11 +28,14 @@ const StartupContainer = () => {
   })
 
   return (
-    <View style={[Layout.fill, Layout.colCenter]}>
-      <Brand />
-      <ActivityIndicator size={'large'} style={[Gutters.largeVMargin]} />
-      <Text style={Fonts.textCenter}>{t('welcome')}</Text>
+    <View style={[Layout.fill, Layout.colCenter, { backgroundColor: Colors.primary }]}>
+      <Brand width={180} height={180} />
+      <View style={{ position: "absolute", bottom: 20 }}>
+        {/* <ActivityIndicator size={'large'} style={[Gutters.largeVMargin]} /> */}
+        {/* <Text style={Fonts.textCenter}>{t('welcome')}</Text> */}
+      </View>
     </View>
+
   )
 }
 

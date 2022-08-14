@@ -41,9 +41,9 @@ export const FontSize = {
 /**
  * Metrics Sizes
  */
-const tiny = 5 // 10
-const small = tiny * 2 // 10
-const regular = tiny * 3 // 15
+const tiny = 6 // 6
+const small = tiny * 2 // 12
+const regular = tiny * 3 // 18
 const large = regular * 2 // 30
 export const MetricsSizes = {
   tiny,

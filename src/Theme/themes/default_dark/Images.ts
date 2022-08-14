@@ -4,8 +4,9 @@
 
 export default function () {
   return {
-    logo: {
-      uri: 'https://thecodingmachine.github.io/react-native-kontan/img/TOM-small.png',
-    },
+    logo: require('@/Assets/Images/brand.png'),
+    // logo: {
+    //   uri: 'https://thecodingmachine.github.io/react-native-kontan/img/TOM-small.png',
+    // },
   }
 }
