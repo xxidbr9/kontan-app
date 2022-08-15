@@ -10,7 +10,7 @@ import Svg, {
 } from "react-native-svg"
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
-const SvgComponent = (props: SvgProps) => (
+const MainAddIcon = (props: SvgProps) => (
   <Svg
     width={92}
     height={92}
@@ -61,4 +61,4 @@ const SvgComponent = (props: SvgProps) => (
   </Svg>
 )
 
-export default SvgComponent
+export default MainAddIcon

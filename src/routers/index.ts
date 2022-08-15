@@ -1,1 +1,1 @@
-export { default as ROUTE_PATH } from './constant'
+export { default as ROUTE_PATH, MAIN_TAB } from './constant'

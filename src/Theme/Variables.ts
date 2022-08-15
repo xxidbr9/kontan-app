@@ -21,6 +21,7 @@ export const Colors = {
 
 export const NavigationColors = {
   primary: Colors.primary,
+  background: Colors.primary,
 }
 
 /**

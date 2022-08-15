@@ -13,6 +13,7 @@
         "type-check": "tsc"
     },
     "dependencies": {
+        "@gorhom/bottom-sheet": "^4.4.3",
         "@react-native-async-storage/async-storage": "^1.17.3",
         "@react-native-masked-view/masked-view": "^0.2.6",
         "@react-navigation/bottom-tabs": "^6.3.1",
@@ -21,6 +22,8 @@
         "@reduxjs/toolkit": "^1.8.1",
         "chroma-js": "^2.4.2",
         "i18next": "^21.6.16",
+        "lottie-ios": "3.4.0",
+        "lottie-react-native": "^5.1.4",
         "prop-types": "^15.8.1",
         "react": "^18.2.0",
         "react-i18next": "^11.16.7",

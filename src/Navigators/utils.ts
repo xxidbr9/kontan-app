@@ -4,6 +4,7 @@
  *
  * You can add other navigation functions that you need and export them
  */
+import { MAIN_TAB } from '@/Routers'
 import {
   CommonActions,
   createNavigationContainerRef,
@@ -11,12 +12,13 @@ import {
 
 type RootStackParamList = {
   Startup: undefined
-  Home: undefined
+  [MAIN_TAB.Home]: undefined,
+  Home: undefined,
 }
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>()
 
-export function navigate(name: keyof RootStackParamList, params: any) {
+export function navigate(name: keyof RootStackParamList, params?: any) {
   if (navigationRef.isReady()) {
     navigationRef.navigate(name, params)
   }

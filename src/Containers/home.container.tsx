@@ -7,6 +7,9 @@ import { CashReceiveIcon, CashOutIcon, MainAddIcon } from '@/Assets/Svgs'
 import chroma from 'chroma-js'
 import { dayOrNight } from '@/Helpers'
 import { Colors } from '@/Theme/Variables'
+import { navigator } from '@/Navigators'
+import { MAIN_TAB } from '@/Routers'
+import { Loading } from '@/Components'
 
 
 /* 
@@ -72,9 +75,9 @@ const HomeContainer = () => {
           </View>
         </View>
       </View>
-
       {/* Floating Button */}
       <TouchableOpacity
+        // onPressIn={() => navigator.navigate('Home', { screen: MAIN_TAB.Home })}
         style={[buttonStyle.wrapper]}
       >
         <MainAddIcon />

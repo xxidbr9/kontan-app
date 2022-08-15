@@ -16,7 +16,7 @@ const App = () => {
 
   const { t, i18n } = useTranslation();
 
-  
+
   useEffect(() => {
     const locales = RNLocalize.getLocales();
     if (locales.length > 0) i18n.changeLanguage(locales[0].languageCode);
@@ -26,6 +26,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <StatusBar backgroundColor={Colors.primary} barStyle={"dark-content"}/>
       {/**
      * PersistGate delays the rendering of the app's UI until the persisted state has been retrieved
      * and saved to redux.
