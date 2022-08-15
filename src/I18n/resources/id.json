@@ -1,22 +1,24 @@
 {
-    "welcome": "Selamat Datang di  React Native instand_login_example by TheCodingMachine",
-    "actions": {
-        "continue": "Lanjutkan"
-    },
-    "example": {
-        "helloUser": "Hy Saya user palsu, nama saya {{name}}",
-        "labels": {
-            "userId": "Masukan user id"
-        }
-    },
-    "time": {
-        "day": "Siang",
-        "night": "Malam",
-        "evening": "Sore",
-        "morning": "Pagi"
-    },
-    "home": {
-        "greeting": "Hai",
-        "say": "Selamat {{time}}"
+  "welcome": "Selamat Datang di  React Native instand_login_example by TheCodingMachine",
+  "actions": {
+    "continue": "Lanjutkan"
+  },
+  "example": {
+    "helloUser": "Hy Saya user palsu, nama saya {{name}}",
+    "labels": {
+      "userId": "Masukan user id"
     }
+  },
+  "time": {
+    "day": "Siang",
+    "night": "Malam",
+    "evening": "Sore",
+    "morning": "Pagi"
+  },
+  "home": {
+    "greeting": "Hai",
+    "say": "Selamat {{time}}",
+    "cashIn": "Uang masuk",
+    "cashOut": "Uang keluar"
+  }
 }

@@ -15,10 +15,10 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* kontanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* kontanTests.m */; };
+		4A1E0CE308E22514908B2416 /* libPods-kontan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D060FF0B2401F8A6889C9898 /* libPods-kontan.a */; };
 		58BB105228A8B6D5007A0EF4 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58BB105128A8B6D5007A0EF4 /* BootSplash.storyboard */; };
-		6039C415533C857B367A1796 /* libPods-kontan-kontanTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D38153D388B0EF666E50E5C0 /* libPods-kontan-kontanTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		DA0DB9813FEFC963C5438E51 /* libPods-kontan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E46E5DB50C87C9708C5860 /* libPods-kontan.a */; };
+		B782B3C3D03DF90E87E34CA3 /* libPods-kontan-kontanTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEAA2847B16C6E2767032635 /* libPods-kontan-kontanTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,24 +43,24 @@
 		00E356EE1AD99517003FC87E /* kontanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kontanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* kontanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kontanTests.m; sourceTree = "<group>"; };
+		04E102204336D0E85EDA5863 /* Pods-kontan-kontanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan-kontanTests.release.xcconfig"; path = "Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* kontan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kontan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = kontan/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = kontan/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = kontan/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = kontan/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = kontan/main.m; sourceTree = "<group>"; };
-		14382C217C1473B18B0366F1 /* Pods-kontan-kontanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan-kontanTests.debug.xcconfig"; path = "Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* kontan-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kontan-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* kontan-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kontan-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		46E7E6154D08F895DEA9CBFF /* Pods-kontan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan.release.xcconfig"; path = "Target Support Files/Pods-kontan/Pods-kontan.release.xcconfig"; sourceTree = "<group>"; };
 		58BB105128A8B6D5007A0EF4 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = kontan/BootSplash.storyboard; sourceTree = "<group>"; };
-		7C657D19A84E679405FF8136 /* Pods-kontan-kontanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan-kontanTests.release.xcconfig"; path = "Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = kontan/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A63472FB62871C7F263AD475 /* Pods-kontan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan.debug.xcconfig"; path = "Target Support Files/Pods-kontan/Pods-kontan.debug.xcconfig"; sourceTree = "<group>"; };
-		B8E46E5DB50C87C9708C5860 /* libPods-kontan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kontan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D38153D388B0EF666E50E5C0 /* libPods-kontan-kontanTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kontan-kontanTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB09AA7D7B113D948A2E718F /* Pods-kontan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan.release.xcconfig"; path = "Target Support Files/Pods-kontan/Pods-kontan.release.xcconfig"; sourceTree = "<group>"; };
+		D060FF0B2401F8A6889C9898 /* libPods-kontan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kontan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F06C873AADD211893BA4FE85 /* Pods-kontan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan.debug.xcconfig"; path = "Target Support Files/Pods-kontan/Pods-kontan.debug.xcconfig"; sourceTree = "<group>"; };
+		F7C8C8539C4E2508A6ABA0F4 /* Pods-kontan-kontanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kontan-kontanTests.debug.xcconfig"; path = "Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FEAA2847B16C6E2767032635 /* libPods-kontan-kontanTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kontan-kontanTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6039C415533C857B367A1796 /* libPods-kontan-kontanTests.a in Frameworks */,
+				B782B3C3D03DF90E87E34CA3 /* libPods-kontan-kontanTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA0DB9813FEFC963C5438E51 /* libPods-kontan.a in Frameworks */,
+				4A1E0CE308E22514908B2416 /* libPods-kontan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,10 +132,10 @@
 		18A06528071B6FFBBA9372E2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A63472FB62871C7F263AD475 /* Pods-kontan.debug.xcconfig */,
-				EB09AA7D7B113D948A2E718F /* Pods-kontan.release.xcconfig */,
-				14382C217C1473B18B0366F1 /* Pods-kontan-kontanTests.debug.xcconfig */,
-				7C657D19A84E679405FF8136 /* Pods-kontan-kontanTests.release.xcconfig */,
+				F06C873AADD211893BA4FE85 /* Pods-kontan.debug.xcconfig */,
+				46E7E6154D08F895DEA9CBFF /* Pods-kontan.release.xcconfig */,
+				F7C8C8539C4E2508A6ABA0F4 /* Pods-kontan-kontanTests.debug.xcconfig */,
+				04E102204336D0E85EDA5863 /* Pods-kontan-kontanTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -145,8 +145,8 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				B8E46E5DB50C87C9708C5860 /* libPods-kontan.a */,
-				D38153D388B0EF666E50E5C0 /* libPods-kontan-kontanTests.a */,
+				D060FF0B2401F8A6889C9898 /* libPods-kontan.a */,
+				FEAA2847B16C6E2767032635 /* libPods-kontan-kontanTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -191,12 +191,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "kontanTests" */;
 			buildPhases = (
-				93DCA58E9DABBB293718EA97 /* [CP] Check Pods Manifest.lock */,
+				0DCF7D2E9B8B0CA35B25AE08 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				6D593F728F6E3596FB3C2F82 /* [CP] Embed Pods Frameworks */,
-				1C5C09E307D2366D595A7EBE /* [CP] Copy Pods Resources */,
+				CBE910ABA82C0A17F052E2CB /* [CP] Embed Pods Frameworks */,
+				07F6D1E615DBA6277781536F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -212,14 +212,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "kontan" */;
 			buildPhases = (
-				5416903AB2D516C601ECFF4E /* [CP] Check Pods Manifest.lock */,
+				FF5EE4A269A6B2445022F433 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				D9FC1FF945444E4513EC36E5 /* [CP] Embed Pods Frameworks */,
-				0D56603F40CEAF964A5DEEB4 /* [CP] Copy Pods Resources */,
+				4796F4D95FC48493AFF4D6DE /* [CP] Embed Pods Frameworks */,
+				383BFE8889A05C2B7C7A1434 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -366,24 +366,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		0D56603F40CEAF964A5DEEB4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-kontan/Pods-kontan-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-kontan/Pods-kontan-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kontan/Pods-kontan-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1C5C09E307D2366D595A7EBE /* [CP] Copy Pods Resources */ = {
+		07F6D1E615DBA6277781536F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -400,60 +383,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		5416903AB2D516C601ECFF4E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-kontan-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6D593F728F6E3596FB3C2F82 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		93DCA58E9DABBB293718EA97 /* [CP] Check Pods Manifest.lock */ = {
+		0DCF7D2E9B8B0CA35B25AE08 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -475,7 +405,38 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D9FC1FF945444E4513EC36E5 /* [CP] Embed Pods Frameworks */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		383BFE8889A05C2B7C7A1434 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kontan/Pods-kontan-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kontan/Pods-kontan-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kontan/Pods-kontan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4796F4D95FC48493AFF4D6DE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -490,6 +451,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kontan/Pods-kontan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBE910ABA82C0A17F052E2CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kontan-kontanTests/Pods-kontan-kontanTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -528,6 +506,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FF5EE4A269A6B2445022F433 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-kontan-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -585,7 +585,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14382C217C1473B18B0366F1 /* Pods-kontan-kontanTests.debug.xcconfig */;
+			baseConfigurationReference = F7C8C8539C4E2508A6ABA0F4 /* Pods-kontan-kontanTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -612,7 +612,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C657D19A84E679405FF8136 /* Pods-kontan-kontanTests.release.xcconfig */;
+			baseConfigurationReference = 04E102204336D0E85EDA5863 /* Pods-kontan-kontanTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -636,7 +636,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A63472FB62871C7F263AD475 /* Pods-kontan.debug.xcconfig */;
+			baseConfigurationReference = F06C873AADD211893BA4FE85 /* Pods-kontan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -664,7 +664,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB09AA7D7B113D948A2E718F /* Pods-kontan.release.xcconfig */;
+			baseConfigurationReference = 46E7E6154D08F895DEA9CBFF /* Pods-kontan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
