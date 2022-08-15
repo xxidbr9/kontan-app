@@ -1,11 +1,12 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, StatusBar, Platform, TouchableOpacity } from 'react-native'
+import React, { useMemo } from 'react'
 import { useTheme } from '@/Hooks'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
-import CashInIcon from '@/Assets/Svgs/CashReceive.icon'
-import CashOutIcon from '@/Assets/Svgs/CashOut.icon'
+import { CashReceiveIcon, CashOutIcon, MainAddIcon } from '@/Assets/Svgs'
 import chroma from 'chroma-js'
+import { dayOrNight } from '@/Helpers'
+import { Colors } from '@/Theme/Variables'
 
 
 /* 
@@ -16,25 +17,38 @@ TODO
     - CashOut
 [ ] Add cash flow chart
 [ ] Add cash flow list
+[ ] Split all component to reusable components
 */
+
+const RAW_BANNER_HEIGHT = 220
+const IS_ANDROID = Platform.OS === 'android'
+const STATUS_BAR_HEIGHT = IS_ANDROID ? StatusBar.currentHeight || 0 : 0
+const BANNER_HEIGHT = IS_ANDROID ? RAW_BANNER_HEIGHT - STATUS_BAR_HEIGHT - 4 : Platform.OS === "ios" ? RAW_BANNER_HEIGHT : RAW_BANNER_HEIGHT
+const PADDING_TOP = IS_ANDROID ? 24 : 12
+const ABSOLUTE_TOP = IS_ANDROID ? 150 : 180
+const CONTAINER_PADDING = 16
+
+
 const HomeContainer = () => {
   const { Colors, MetricsSizes, Fonts, Gutters } = useTheme()
+
   const { t } = useTranslation()
 
   return (
     <React.Fragment>
-      <View style={[homeStyle.bannerHero, { backgroundColor: Colors.primary }]}>
-        <SafeAreaView style={[{ paddingHorizontal: 24, paddingTop: 12 }]}>
+      <StatusBar backgroundColor={Colors.primary} />
+      <View style={[homeStyle.bannerHero, { height: BANNER_HEIGHT, backgroundColor: Colors.primary }]}>
+        <SafeAreaView style={[{ paddingHorizontal: CONTAINER_PADDING, paddingTop: PADDING_TOP }]}>
           <View>
             <Text style={[Fonts.h5]}>{t("home.greeting")}</Text>
-            <Text style={[Fonts.h5]}>{t('home.say', { time: t('time.day') })}</Text>
+            <Text style={[Fonts.h5]}>{t('home.say', { time: dayOrNight(new Date) })}</Text>
           </View>
           <View style={{ marginTop: MetricsSizes.small }}>
             <Text style={[Fonts.titleRegular]}>Rp. 10.000.000</Text>
           </View>
         </SafeAreaView>
-        <View style={[{ position: "absolute", width: "100%", flex: 1, top: 180 }]}>
-          <View style={[{ marginHorizontal: 24, padding: 16, backgroundColor: Colors.white, borderRadius: 12, display: 'flex', flexDirection: "row" }]}>
+        <View style={[{ position: "absolute", width: "100%", flex: 1, top: ABSOLUTE_TOP }]}>
+          <View style={[{ marginHorizontal: CONTAINER_PADDING, padding: 16, backgroundColor: Colors.white, borderRadius: 12, display: 'flex', flexDirection: "row", }, homeStyle.cashFlow]}>
 
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingRight: 12 }}>
               <RoundIconRocket type='in' />
@@ -58,6 +72,13 @@ const HomeContainer = () => {
           </View>
         </View>
       </View>
+
+      {/* Floating Button */}
+      <TouchableOpacity
+        style={[buttonStyle.wrapper]}
+      >
+        <MainAddIcon />
+      </TouchableOpacity>
     </React.Fragment>
   )
 }
@@ -66,7 +87,7 @@ const HomeContainer = () => {
 
 const RoundIconRocket = (props: { type: "in" | "out" }) => {
   const color: string = props.type === "in" ? useTheme().Colors.success : useTheme().Colors.error
-  const icon: JSX.Element = props.type === "in" ? <CashInIcon color={color} /> : <CashOutIcon color={color} />
+  const icon: JSX.Element = props.type === "in" ? <CashReceiveIcon color={color} /> : <CashOutIcon color={color} />
   const backgroundColor: string = chroma(color).alpha(.1).hex()
 
   return (
@@ -89,16 +110,51 @@ const iconStyle = StyleSheet.create({
   }
 })
 
+const buttonStyle = StyleSheet.create({
+  wrapper: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    width: 62,
+    position: 'absolute',
+    bottom: 40,
+    height: 62,
+    borderRadius: 100,
+
+    shadowOffset: {
+      height: 0,
+      width: 0
+    },
+    shadowOpacity: .2,
+    shadowRadius: 16,
+    shadowColor: Colors.primary,
+    elevation: 20,
+  }
+})
+
 const homeStyle = StyleSheet.create({
   bannerHero: {
     width: "100%",
-    height: 220,
   },
 
   verticalsLine: {
     height: '100%',
     width: 1.2,
     backgroundColor: "rgba(225, 225, 225, 1)",
+  },
+
+  cashFlow: {
+    shadowOffset: {
+      height: 0,
+      width: 4
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 16,
+    shadowColor: "rgb(33, 37, 41)",
+    elevation: 3,
+
+    // box- shadow: 0px 4px 16px rgba(33, 37, 41, 0.1);
+    // border- radius: 12px;
   }
 
 })

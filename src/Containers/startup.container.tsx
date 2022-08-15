@@ -5,7 +5,7 @@ import { useTheme } from '@/Hooks'
 import { Brand } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset } from '@/Navigators/utils'
-import { ROUTE_PATH } from '@/routers'
+import { ROUTE_PATH } from '@/Routers'
 
 const StartupContainer = () => {
   const { Layout, Gutters, Fonts, Colors } = useTheme()
