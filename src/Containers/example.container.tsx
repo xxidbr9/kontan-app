@@ -13,6 +13,8 @@ import { Brand } from '@/Components'
 import { useTheme } from '@/Hooks'
 import { useLazyFetchOneQuery } from '@/Services/modules/users'
 import { changeTheme, ThemeState } from '@/Store/Theme'
+import { navigator } from '@/Navigators'
+import { ROUTE_PATH } from '@/Routers'
 
 const ExampleContainer = () => {
   const { t } = useTranslation()
@@ -29,6 +31,10 @@ const ExampleContainer = () => {
 
   const onChangeTheme = ({ theme, darkMode }: Partial<ThemeState>) => {
     dispatch(changeTheme({ theme, darkMode }))
+  }
+
+  const onBack = () => {
+    navigator.navigateAndSimpleReset(ROUTE_PATH.MAIN)
   }
 
   return (
@@ -94,6 +100,13 @@ const ExampleContainer = () => {
         onPress={() => onChangeTheme({ darkMode: false })}
       >
         <Text style={Fonts.textRegular}>Light</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[Common.button.rounded, Gutters.regularBMargin]}
+        onPress={onBack}
+      >
+        <Text style={Fonts.textRegular}>Back</Text>
       </TouchableOpacity>
     </ScrollView>
   )

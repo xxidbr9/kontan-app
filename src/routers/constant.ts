@@ -4,7 +4,7 @@ const STARTUP = 'startup';
 
 
 export const MAIN_TAB = {
-  HOME: 'main/home',
+  Home: 'main/home' as const,
 }
 
 const ROUTE_PATH = {

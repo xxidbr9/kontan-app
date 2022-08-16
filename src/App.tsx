@@ -12,20 +12,30 @@ import { StatusBar, Platform } from 'react-native'
 import { Colors } from './Theme/Variables'
 
 
+
 const App = () => {
 
   const { t, i18n } = useTranslation();
 
-  
+
   useEffect(() => {
     const locales = RNLocalize.getLocales();
     if (locales.length > 0) i18n.changeLanguage(locales[0].languageCode);
-    // if (Platform.OS === 'android') StatusBar.setBackgroundColor(Colors.primary);
-    RNBootSplash.hide({ fade: true });
+
+    (async () => {
+      await new Promise(res => {
+        setTimeout(() => {
+          res(true)
+          RNBootSplash.hide();
+        }, 1000)
+      })
+    })()
+
   }, [])
 
   return (
     <Provider store={store}>
+      <StatusBar backgroundColor={Colors.primary} barStyle={"dark-content"} />
       {/**
      * PersistGate delays the rendering of the app's UI until the persisted state has been retrieved
      * and saved to redux.

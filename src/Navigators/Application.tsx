@@ -1,24 +1,29 @@
-import React from 'react'
-import { SafeAreaView, StatusBar } from 'react-native'
-import { CardStyleInterpolators, createStackNavigator, StackCardInterpolationProps } from '@react-navigation/stack'
+import React, { useEffect } from 'react'
+import { StatusBar } from 'react-native'
+import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import { HomeContainer, StartupContainer } from '@/Containers'
+import { HomeContainer, SkiaContainer, StartupContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
-import MainNavigator from './Main'
 import { navigationRef } from './utils'
-import { ROUTE_PATH } from '@/routers'
+import { MAIN_TAB, ROUTE_PATH } from '@/Routers'
+import MainNavigator from './Main'
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
 const Stack = createStackNavigator()
+// const AnimatedStackScreen = Animated.createAnimatedComponent(Stack.Screen)
 
 // @refresh reset
 const ApplicationNavigator = () => {
-  const { darkMode, NavigationTheme } = useTheme()
+  const { darkMode, NavigationTheme, Colors } = useTheme()
 
   return (
     <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
-      <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
-      <Stack.Navigator screenOptions={{ headerShown: false }} >
-        <Stack.Screen name={ROUTE_PATH.STARTUP} component={StartupContainer} />
+      {/* <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} /> */}
+      <StatusBar barStyle={'dark-content'} />
+      <Stack.Navigator
+        screenOptions={{ cardStyle: { backgroundColor: Colors.white }, }}
+      >
+        <Stack.Screen name={ROUTE_PATH.STARTUP} component={StartupContainer} options={{ headerShown: false }} />
         <Stack.Screen
           name={ROUTE_PATH.MAIN}
           component={HomeContainer}
@@ -27,12 +32,21 @@ const ApplicationNavigator = () => {
             animationEnabled: false,
           }}
         />
-        {/* <Stack.Screen
-          name={ROUTE_PATH.MAIN}
-          component={MainNavigator}
+        <Stack.Screen
+          name={"Skia"}
+          component={SkiaContainer}
           options={{
             headerShown: false,
             animationEnabled: false,
+          }}
+        />
+        {/* <Stack.Screen
+          name={'Home'}
+          component={MainNavigator}
+          options={{
+            headerShown: false,
+            // animationEnabled: false,
+            presentation: "modal"
           }}
         /> */}
       </Stack.Navigator>
