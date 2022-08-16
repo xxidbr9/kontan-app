@@ -24,6 +24,7 @@
         "@reduxjs/toolkit": "^1.8.1",
         "@shopify/react-native-skia": "^0.1.141",
         "chroma-js": "^2.4.2",
+        "d3": "^7.6.1",
         "i18next": "^21.6.16",
         "lottie-ios": "3.4.0",
         "lottie-react-native": "^5.1.4",
