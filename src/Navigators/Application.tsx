@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { StatusBar } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import { HomeContainer, StartupContainer } from '@/Containers'
+import { HomeContainer, SkiaContainer, StartupContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { navigationRef } from './utils'
 import { MAIN_TAB, ROUTE_PATH } from '@/Routers'
@@ -27,6 +27,14 @@ const ApplicationNavigator = () => {
         <Stack.Screen
           name={ROUTE_PATH.MAIN}
           component={HomeContainer}
+          options={{
+            headerShown: false,
+            animationEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name={"Skia"}
+          component={SkiaContainer}
           options={{
             headerShown: false,
             animationEnabled: false,

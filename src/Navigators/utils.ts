@@ -14,6 +14,7 @@ type RootStackParamList = {
   Startup: undefined
   [MAIN_TAB.Home]: undefined,
   Home: undefined,
+  Skia: undefined
 }
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>()

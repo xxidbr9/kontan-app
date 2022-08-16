@@ -83,7 +83,7 @@ const HomeContainer = () => {
       {/* Floating Button */}
       <TouchableOpacity
         activeOpacity={0.8}
-        // onPressIn={() => navigator.navigate('Home', { screen: MAIN_TAB.Home })}
+        onPressIn={() => navigator.navigate('Skia', { screen: "Skia" })}
         style={[buttonStyle.wrapper]}
       >
         <MainAddIcon />

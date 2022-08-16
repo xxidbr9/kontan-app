@@ -65,7 +65,7 @@ const StartupContainer = () => {
 
   return (
     <Animated.View style={[Layout.fill, Layout.colCenter, { backgroundColor: Colors.primary }, animatedOpacity, animatedScale]}>
-      <Brand width={180} height={180} imageStyle={[animatedOpacity]} />
+      <Brand width={180} height={180} />
       <View style={{ position: "absolute", bottom: 40, alignItems: "center" }}>
         <Loading />
         <Text style={[Fonts.bodyRegular]}>Kontan</Text>
