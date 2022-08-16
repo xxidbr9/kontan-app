@@ -65,6 +65,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   // custom modules
   [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
 
+
   // end custom modules
 
   return YES;

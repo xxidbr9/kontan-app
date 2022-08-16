@@ -6,6 +6,8 @@
         "android": "react-native run-android",
         "prebuild:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
         "build:android": "cd ./android && ./gradlew assembleDebug",
+        "bundle:ios": "react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios",
+        "prod:ios": "yarn ios --configuration Release",
         "ios": "react-native run-ios",
         "start": "react-native start",
         "test": "jest",

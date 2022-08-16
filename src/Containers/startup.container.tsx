@@ -43,6 +43,7 @@ const StartupContainer = () => {
 
   const init = async () => {
 
+    // fetched data from server
     await new Promise(resolve => {
       setTimeout(() => {
         opacity.value = 0
@@ -50,8 +51,8 @@ const StartupContainer = () => {
       }, RUN_TIMING)
 
       setTimeout(() => {
-        navigateAndSimpleReset(ROUTE_PATH.MAIN)
         resolve(true)
+        navigateAndSimpleReset(ROUTE_PATH.MAIN)
       }, TIMING)
     })
 
@@ -60,14 +61,14 @@ const StartupContainer = () => {
 
   useEffect(() => {
     init()
-  })
+  }, [])
 
   return (
     <Animated.View style={[Layout.fill, Layout.colCenter, { backgroundColor: Colors.primary }, animatedOpacity, animatedScale]}>
       <Brand width={180} height={180} imageStyle={[animatedOpacity]} />
       <View style={{ position: "absolute", bottom: 40, alignItems: "center" }}>
         <Loading />
-        {/* <Text style={Fonts.textCenter}>{t('welcome')}</Text> */}
+        <Text style={[Fonts.bodyRegular]}>Kontan</Text>
       </View>
     </Animated.View>
 
