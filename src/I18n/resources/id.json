@@ -1,24 +1,41 @@
 {
-    "welcome": "Selamat Datang di  React Native instand_login_example by TheCodingMachine",
-    "actions": {
-        "continue": "Lanjutkan"
-    },
-    "example": {
-        "helloUser": "Hy Saya user palsu, nama saya {{name}}",
-        "labels": {
-            "userId": "Masukan user id"
-        }
-    },
-    "time": {
-        "afternoon": "Siang",
-        "night": "Malam",
-        "evening": "Sore",
-        "morning": "Pagi"
-    },
-    "home": {
-        "greeting": "Hai",
-        "say": "Selamat {{time}}",
-        "cashIn": "Uang masuk",
-        "cashOut": "Uang keluar"
+  "welcome": "Selamat Datang di  React Native instand_login_example by TheCodingMachine",
+  "actions": {
+    "continue": "Lanjutkan"
+  },
+  "example": {
+    "helloUser": "Hy Saya user palsu, nama saya {{name}}",
+    "labels": {
+      "userId": "Masukan user id"
     }
+  },
+  "time": {
+    "afternoon": "Siang",
+    "night": "Malam",
+    "evening": "Sore",
+    "morning": "Pagi"
+  },
+  "month": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "Mei",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Agu",
+    "sep": "Sep",
+    "oct": "Okt",
+    "nov": "Nov",
+    "dec": "Des"
+  },
+  "home": {
+    "greeting": "Hai",
+    "say": "Selamat {{time}}",
+    "cashIn": "Uang masuk",
+    "cashOut": "Uang keluar",
+    "yourBalance": "Saldo kamu",
+    "calculationInMonth": "Kalkulasi dalam sebulan"
+  },
+  "hello": "Hello dunia"
 }

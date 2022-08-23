@@ -2,14 +2,17 @@ import i18n from '@/I18n'
 
 const dayOrNight = (date: Date) => {
   const hour = date.getHours();
-  if (hour < 3) {
-    return i18n.t('time.night');
-  } else if (hour < 10) {
+  if (hour >= 3 && hour < 10) {
     return i18n.t('time.morning');
-  } else if (hour < 18) {
+  }
+  if (hour > 9 && hour < 17) {
     return i18n.t('time.afternoon');
-  } else {
+  }
+  if (hour >= 17 && hour < 19) {
     return i18n.t('time.evening');
+  }
+  if (hour >= 19 || hour < 3) {
+    return i18n.t('time.night');
   }
 }
 

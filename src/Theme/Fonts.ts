@@ -93,5 +93,14 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
     textRight: {
       textAlign: 'right',
     },
+    bold: {
+      fontWeight: '600',
+    },
+    medium: {
+      fontWeight: '500',
+    },
+    light: {
+      fontWeight: '300',
+    },
   })
 }

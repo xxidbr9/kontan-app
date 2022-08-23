@@ -17,6 +17,7 @@ export const Colors = {
   primary: '#FCD205',
   success: '#16D24B',
   error: '#F34D18',
+  textOpacity: "rgba(33, 37, 41, 0.5)"
 }
 
 export const NavigationColors = {

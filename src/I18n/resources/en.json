@@ -14,12 +14,28 @@
         "greeting": "Hi",
         "say": "Good {{time}}",
         "cashIn": "Cash in",
-        "cashOut": "Cash out"
+        "cashOut": "Cash out",
+        "yourBalance": "Your balance",
+        "calculationInMonth": "Calculation in a month"
     },
     "time": {
         "morning": "Morning",
         "night": "Night",
         "afternoon": "Afternoon",
         "evening": "Evening"
+    },
+    "month": {
+        "jan": "Jan",
+        "feb": "Feb",
+        "mar": "Mar",
+        "apr": "Apr",
+        "may": "May",
+        "jun": "Jun",
+        "jul": "Jul",
+        "aug": "Aug",
+        "sep": "Sep",
+        "oct": "Oct",
+        "nov": "Nov",
+        "dec": "Dec"
     }
 }
