@@ -14,42 +14,42 @@ export const mainLog: LogType[] = [
     id: 1,
     type: 'expanse',
     amount: 10000,
-    date: new Date(2020, 5, 21, 10, 0),
+    date: new Date(2022, 5, 21, 10, 0),
     description: 'Jajan makanan',
   },
   {
     id: 2,
     type: 'expanse',
     amount: 20000,
-    date: new Date(2020, 5, 21, 10, 0),
+    date: new Date(2022, 5, 21, 10, 0),
     description: 'Jajan makanan',
   },
   {
     id: 3,
     type: 'income',
     amount: 30000,
-    date: new Date(2020, 5, 21, 10, 0),
+    date: new Date(2022, 5, 21, 10, 0),
     description: 'Jajan makanan',
   },
   {
     id: 4,
     type: 'income',
     amount: 30000,
-    date: new Date(2020, 5, 21, 10, 0),
+    date: new Date(2022, 5, 21, 10, 0),
     description: 'Duid masuk',
   },
   {
     id: 4,
     type: 'expanse',
     amount: 30000,
-    date: new Date(2020, 5, 22, 10, 0),
+    date: new Date(2022, 5, 22, 10, 0),
     description: 'Jajan makanan',
   },
   {
     id: 5,
     type: 'income',
     amount: 30000,
-    date: new Date(2020, 5, 22, 10, 0),
+    date: new Date(2022, 5, 22, 10, 0),
     description: 'Tambahan uang',
   },
 ]
@@ -87,3 +87,14 @@ export const toGroupLogs = (logs: LogType[]): GroupedLogType[] => {
   )
   return groupedLogs
 }
+
+
+export const monthList = [
+  'Desember',
+  'Januari',
+  'Februari',
+  'Maret',
+  'April',
+  'Mei',
+  'Juni',
+].reverse()

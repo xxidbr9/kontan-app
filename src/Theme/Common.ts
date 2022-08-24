@@ -17,6 +17,9 @@ export default function <C>({ Colors, ...args }: CommonParams<C>) {
       backgroundReset: {
         backgroundColor: Colors.transparent,
       },
+      container: {
+        paddingHorizontal: 16
+      },
       textInput: {
         borderWidth: 1,
         borderColor: Colors.text,
