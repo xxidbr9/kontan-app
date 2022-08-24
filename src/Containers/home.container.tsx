@@ -35,11 +35,12 @@ const BANNER_HEIGHT = IS_ANDROID ? RAW_BANNER_HEIGHT - STATUS_BAR_HEIGHT - 4 : P
 const PADDING_TOP = IS_ANDROID ? 24 : 12
 const ABSOLUTE_TOP = IS_ANDROID ? 150 : 184
 // const CONTAINER_PADDING = 16
-const BALANCE_TOP = 98
-const SCROLLED_BALANCE_TOP = 56
-const SCROLLED_BALANCE_HERO_HEIGHT = 128
+const BALANCE_TOP = IS_ANDROID ? 72 : 98
+const CALCULATION_BOTTOM = IS_ANDROID ? 48 : 44
+const SCROLLED_BALANCE_TOP = IS_ANDROID ? 56 - STATUS_BAR_HEIGHT : 56
+const SCROLLED_BALANCE_HERO_HEIGHT = IS_ANDROID ? 128 - STATUS_BAR_HEIGHT : 128
 const ON_SCROLL_TOP = 42
-const MONTH_TOP = 292
+const MONTH_TOP = IS_ANDROID ? 292 - STATUS_BAR_HEIGHT : 292
 const MONTH_TOP_SCROLLED = SCROLLED_BALANCE_HERO_HEIGHT - 20
 const MONTH_START_Y_POSITION = 184
 
@@ -89,6 +90,63 @@ const HomeContainer = () => {
     }
   })
 
+  const HeaderComp = (
+    <Animated.View style={[{ flexGrow: 1 }]} >
+      <View style={[homeStyle.bannerHero, { height: BANNER_HEIGHT, backgroundColor: Colors.primary }]}>
+        <SafeAreaView style={[Common.container, { paddingTop: PADDING_TOP, height: "100%" }]}>
+          <View>
+            <Text style={[Fonts.h5]}>
+              <Text>{t("home.greeting")}</Text>
+              <Text>,&nbsp;</Text>
+              <Text>{t('home.say', { time: dayOrNight(new Date) })}</Text>
+            </Text>
+          </View>
+
+          <View style={[{ flexDirection: "row", position: "absolute", bottom: CALCULATION_BOTTOM, marginHorizontal: 12 }]}>
+            <Text style={[{ color: Colors.error }]}>*</Text>
+            <Text style={[Fonts.bodyXSmall, { marginLeft: 2, color: chroma(Colors.text).alpha(.5).hex() }]}>
+              {t('home.calculationInMonth')}
+            </Text>
+          </View>
+        </SafeAreaView>
+        <View style={[{ position: "absolute", zIndex: 2, elevation: 2, width: "100%", flex: 1, top: ABSOLUTE_TOP }]}>
+          <View style={[{ marginHorizontal: Common.container.paddingHorizontal, padding: 12, backgroundColor: Colors.white, borderRadius: 12, display: 'flex', flexDirection: "row", }, homeStyle.cashFlow]}>
+            <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingRight: 12, paddingVertical: 8 }}>
+              <RoundIconRocket type='in' />
+              <View style={[{ marginLeft: 12 }]}>
+                <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashIn')}</Text>
+                <Text style={[Fonts.bodySmall]}>Rp. {moneyFormatter(1000000)}</Text>
+              </View>
+            </View>
+
+            <View style={[homeStyle.verticalsLine]} />
+
+            <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingLeft: 12, paddingVertical: 8 }}>
+              <RoundIconRocket type='out' />
+              <View style={[{ marginLeft: 12 }]}>
+                <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashOut')}</Text>
+                <Text style={[Fonts.bodySmall]}>- Rp.{moneyFormatter(1000000)}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+
+      {/* Content Start */}
+      <View style={[Common.container, { paddingTop: 66, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }]}>
+        <Text style={[Fonts.h6, Fonts.bold]}>
+          Catatan
+        </Text>
+        <TouchableOpacity activeOpacity={.8}>
+          <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>
+            Lihat
+          </Text>
+        </TouchableOpacity>
+      </View>
+      {/* Content End */}
+    </Animated.View>
+  )
+
   return (
     <React.Fragment>
       <StatusBar backgroundColor={Colors.primary} />
@@ -111,69 +169,22 @@ const HomeContainer = () => {
           </View>
         )} />
       {/* List Month end */}
-      <Animated.ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={onScroll} style={[StyleSheet.absoluteFill, { flex: 1 }]} contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={[homeStyle.bannerHero, { height: BANNER_HEIGHT, backgroundColor: Colors.primary }]}>
-          <SafeAreaView style={[Common.container, { paddingTop: PADDING_TOP, height: "100%" }]}>
-            <View>
-              <Text style={[Fonts.h5]}>
-                <Text>{t("home.greeting")}</Text>
-                <Text>,&nbsp;</Text>
-                <Text>{t('home.say', { time: dayOrNight(new Date) })}</Text>
-              </Text>
-            </View>
 
-            <View style={[{ flexDirection: "row", position: "absolute", bottom: 42, marginHorizontal: 12 }]}>
-              <Text style={[{ color: Colors.error }]}>*</Text>
-              <Text style={[Fonts.bodyXSmall, { marginLeft: 2, color: chroma(Colors.text).alpha(.5).hex() }]}>
-                {t('home.calculationInMonth')}
-              </Text>
-            </View>
-          </SafeAreaView>
-          <View style={[{ position: "absolute", zIndex: 2, elevation: 2, width: "100%", flex: 1, top: ABSOLUTE_TOP }]}>
-            <View style={[{ marginHorizontal: Common.container.paddingHorizontal, padding: 12, backgroundColor: Colors.white, borderRadius: 12, display: 'flex', flexDirection: "row", }, homeStyle.cashFlow]}>
-              <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingRight: 12, paddingVertical: 8 }}>
-                <RoundIconRocket type='in' />
-                <View style={[{ marginLeft: 12 }]}>
-                  <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashIn')}</Text>
-                  <Text style={[Fonts.bodySmall]}>Rp. {moneyFormatter(1000000)}</Text>
-                </View>
-              </View>
-
-              <View style={[homeStyle.verticalsLine]} />
-
-              <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingLeft: 12, paddingVertical: 8 }}>
-                <RoundIconRocket type='out' />
-                <View style={[{ marginLeft: 12 }]}>
-                  <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashOut')}</Text>
-                  <Text style={[Fonts.bodySmall]}>- Rp.{moneyFormatter(1000000)}</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        {/* Content Start */}
-        <View style={[Common.container, { paddingTop: 66, flexDirection: "row", justifyContent: "space-between" }]}>
-          <Text style={[Fonts.h6, Fonts.bold]}>
-            Catatan
-          </Text>
-          <TouchableOpacity activeOpacity={.8}>
-            <Text style={[Fonts.bodySmall, { color: Colors.textOpacity }]}>
-              Lihat statistik
+      {/* render all home */}
+      <Animated.FlatList
+        scrollEventThrottle={16}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={HeaderComp}
+        ListHeaderComponentStyle={{ marginBottom: 56 }}
+        onScroll={onScroll}
+        data={toGroupLogs(mainLog)}
+        renderItem={({ index, item }) => (
+          <View key={index} style={[Common.container]}>
+            <Text>
+              {JSON.stringify(item, null, 2)}
             </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={[Common.container, { marginTop: 64 }]}>
-          {toGroupLogs(mainLog).map((item, index) => (
-            <View key={index}>
-              <Text>
-                {JSON.stringify(item, null, 2)}
-              </Text>
-            </View>
-          ))}
-        </View>
-        {/* Content End */}
-      </Animated.ScrollView>
+          </View>
+        )} />
 
 
       {/* Floating Button */}
@@ -188,6 +199,7 @@ const HomeContainer = () => {
     </React.Fragment>
   )
 }
+
 
 
 type BalanceProps = {
