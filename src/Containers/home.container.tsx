@@ -11,6 +11,8 @@ import { navigator } from '@/Navigators'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import Animated, { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, useValue } from 'react-native-reanimated'
 import { mainLog, monthList, toGroupLogs } from '@/Dummies'
+import { useNavigation } from '@react-navigation/native'
+import { ROUTE_PATH } from '@/Routers'
 
 
 /* 
@@ -26,6 +28,7 @@ TODO
 [ ] Add animation on top when scroll
 [ ] Change to flat list for approach better performance
 [ ] fix scroll month snap
+[ ] add translation for all text components
 */
 
 const RAW_BANNER_HEIGHT = 220
@@ -90,6 +93,11 @@ const HomeContainer = () => {
     }
   })
 
+
+  const handleAddNewLog = () => {
+    navigator.navigate(ROUTE_PATH.NEW_LOG, {})
+  }
+
   const HeaderComp = (
     <Animated.View style={[{ flexGrow: 1 }]} >
       <View style={[homeStyle.bannerHero, { height: BANNER_HEIGHT, backgroundColor: Colors.primary }]}>
@@ -137,7 +145,7 @@ const HomeContainer = () => {
         <Text style={[Fonts.h6, Fonts.bold]}>
           Catatan
         </Text>
-        <TouchableOpacity activeOpacity={.8}>
+        <TouchableOpacity activeOpacity={.8} onPress={() => navigator.navigate("Skia", {})}>
           <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>
             Lihat
           </Text>
@@ -190,7 +198,7 @@ const HomeContainer = () => {
       {/* Floating Button */}
       <TouchableOpacity
         activeOpacity={0.8}
-        onPressIn={() => navigator.navigate('Skia', { screen: "Skia" })}
+        onPressIn={handleAddNewLog}
         style={[buttonStyle.wrapper]}
       >
         <MainAddIcon />
@@ -233,7 +241,6 @@ const buttonStyle = StyleSheet.create({
     bottom: 40,
     height: 62,
     borderRadius: 100,
-
     shadowOffset: {
       height: 0,
       width: 0

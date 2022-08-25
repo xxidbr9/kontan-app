@@ -4,7 +4,7 @@
  *
  * You can add other navigation functions that you need and export them
  */
-import { MAIN_TAB } from '@/Routers'
+import { MAIN_TAB, ROUTE_PATH } from '@/Routers'
 import {
   CommonActions,
   createNavigationContainerRef,
@@ -14,7 +14,8 @@ type RootStackParamList = {
   Startup: undefined
   [MAIN_TAB.Home]: undefined,
   Home: undefined,
-  Skia: undefined
+  Skia: undefined,
+  [ROUTE_PATH.NEW_LOG]: undefined
 }
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>()

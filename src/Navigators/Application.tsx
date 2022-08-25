@@ -1,26 +1,42 @@
 import React, { useEffect } from 'react'
-import { StatusBar } from 'react-native'
+import { Image, StatusBar, View, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import { HomeContainer, SkiaContainer, StartupContainer } from '@/Containers'
+import { HomeContainer, SkiaContainer, StartupContainer, NewLogContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { navigationRef } from './utils'
 import { MAIN_TAB, ROUTE_PATH } from '@/Routers'
 import MainNavigator from './Main'
-import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import Animated, { Easing, interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import { BackIcon } from '@/Assets/Svgs'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { useTiming } from '@shopify/react-native-skia'
+
+
+
+/* 
+TODO
+
+[ ] split navigation header to separate component
+[ ] Animated.View for navigation header
+[ ] add translation 
+
+
+*/
 
 const Stack = createStackNavigator()
-// const AnimatedStackScreen = Animated.createAnimatedComponent(Stack.Screen)
 
 // @refresh reset
 const ApplicationNavigator = () => {
-  const { darkMode, NavigationTheme, Colors } = useTheme()
-
+  const { darkMode, NavigationTheme, Colors, Fonts, Common } = useTheme()
+  
   return (
     <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
       {/* <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} /> */}
       <StatusBar barStyle={'dark-content'} />
       <Stack.Navigator
+        initialRouteName={ROUTE_PATH.STARTUP}
         screenOptions={{ cardStyle: { backgroundColor: Colors.white }, }}
       >
         <Stack.Screen name={ROUTE_PATH.STARTUP} component={StartupContainer} options={{ headerShown: false }} />
@@ -40,15 +56,47 @@ const ApplicationNavigator = () => {
             animationEnabled: false,
           }}
         />
-        {/* <Stack.Screen
-          name={'Home'}
-          component={MainNavigator}
+
+        <Stack.Screen
+          name={ROUTE_PATH.NEW_LOG}
+          component={NewLogContainer}
           options={{
-            headerShown: false,
-            // animationEnabled: false,
-            presentation: "modal"
+            headerShown: true,
+            title: "Catatan baru",
+            header: (props) => (
+              <React.Fragment>
+                <Animated.View
+                  style={[
+                    {
+                      width: "100%",
+                      height: 96,
+                      backgroundColor: Colors.primary,
+                    }]}>
+                  <View style={[
+                    Common.container,
+                    {
+                    width: "100%",
+                    top: 56,
+                    position: "absolute",
+                  }]}>
+                    <TouchableWithoutFeedback
+                      onPress={props.navigation.goBack}>
+                      <BackIcon />
+                    </TouchableWithoutFeedback>
+                    {props.options.headerRight && (
+                      <TouchableWithoutFeedback>
+                        <Text>Right</Text>
+                      </TouchableWithoutFeedback>
+                    )}
+                  </View>
+                </Animated.View>
+                <View style={{ alignSelf: "center", position: "absolute", marginTop: 56 }}>
+                  <Text style={[Fonts.bodySmall, Fonts.bold]}>{props.options.title}</Text>
+                </View>
+              </React.Fragment>
+            )
           }}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
