@@ -4,7 +4,7 @@
  *
  * You can add other navigation functions that you need and export them
  */
-import { MAIN_TAB, ROUTE_PATH } from '@/Routers'
+import { MAIN_TAB, ROUTE_PATH } from '@/Navigators'
 import {
   CommonActions,
   createNavigationContainerRef,

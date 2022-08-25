@@ -1,41 +1,41 @@
 {
-    "welcome": "Welcome to React Native kontan by ",
-    "actions": {
-        "continue": "Continue"
-    },
-    "example": {
-        "helloUser": "I am a fake user, my name is {{name}}",
-        "labels": {
-            "userId": "Enter a user id"
-        }
-    },
-    "hello": "Hello world",
-    "home": {
-        "greeting": "Hi",
-        "say": "Good {{time}}",
-        "cashIn": "Cash in",
-        "cashOut": "Cash out",
-        "yourBalance": "Your balance",
-        "calculationInMonth": "Calculation in a month"
-    },
-    "time": {
-        "morning": "Morning",
-        "night": "Night",
-        "afternoon": "Afternoon",
-        "evening": "Evening"
-    },
-    "month": {
-        "jan": "Jan",
-        "feb": "Feb",
-        "mar": "Mar",
-        "apr": "Apr",
-        "may": "May",
-        "jun": "Jun",
-        "jul": "Jul",
-        "aug": "Aug",
-        "sep": "Sep",
-        "oct": "Oct",
-        "nov": "Nov",
-        "dec": "Dec"
+  "welcome": "Welcome to React Native kontan by ",
+  "actions": {
+    "continue": "Continue"
+  },
+  "example": {
+    "helloUser": "I am a fake user, my name is {{name}}",
+    "labels": {
+      "userId": "Enter a user id"
     }
+  },
+  "hello": "Hello world",
+  "home": {
+    "greeting": "Hallo",
+    "say": "Good {{time}}",
+    "cashIn": "Cash in",
+    "cashOut": "Cash out",
+    "yourBalance": "Your balance",
+    "calculationInMonth": "Calculation in a month"
+  },
+  "time": {
+    "morning": "Morning",
+    "night": "Night",
+    "afternoon": "Afternoon",
+    "evening": "Evening"
+  },
+  "month": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "May",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec"
+  }
 }

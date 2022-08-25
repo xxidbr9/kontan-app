@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ExampleContainer } from '@/Containers'
-import { MAIN_TAB } from '@/Routers/constant'
+import { MAIN_TAB } from '@/Navigators'
 
 const Tab = createBottomTabNavigator()
 

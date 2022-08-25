@@ -2,7 +2,7 @@ import { PencilIcon } from '@/Assets/Svgs'
 import { moneyFormatter } from '@/Helpers'
 import { useTheme } from '@/Hooks'
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Text, TextInput, TouchableWithoutFeedback, Button, Pressable } from 'react-native'
+import { View, Text, TextInput, TouchableWithoutFeedback, Button, Pressable, Platform } from 'react-native'
 import CurrencyInput from 'react-native-currency-input'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -13,9 +13,13 @@ TODO
 [ ] split select button for log type
 [ ] add logic for storing the new log
 [ ] add category type
+[ ] constant OS on globals
 - [ ] category bottom sheet for create or pick existing ones
 
 */
+
+
+const IS_ANDROID = Platform.OS === 'android'
 
 const NewLogContainer = () => {
   const { Common, Fonts, Colors } = useTheme()
@@ -61,7 +65,7 @@ const NewLogContainer = () => {
               <PencilIcon />
               <TextInput
                 placeholderTextColor={Colors.textOpacity}
-                ref={inputDescRef} selectionColor={Colors.primary} style={[{ marginLeft: 12 }]} placeholder="Tulis catatan : Buat makan malam 🍔" />
+                ref={inputDescRef} selectionColor={Colors.primary} style={[{ marginLeft: 12, padding:0 }]} placeholder="Tulis catatan : Buat makan malam 🍔" />
             </View>
           </TouchableWithoutFeedback>
         </View>

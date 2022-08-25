@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, StatusBar, Platform, TouchableOpacity, NativeSyntheticEvent, NativeScrollEvent, StyleProp, ViewStyle, Button } from 'react-native'
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useTheme } from '@/Hooks'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
@@ -9,10 +9,12 @@ import { dayOrNight, moneyFormatter } from '@/Helpers'
 import { Colors } from '@/Theme/Variables'
 import { navigator } from '@/Navigators'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
-import Animated, { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, useValue } from 'react-native-reanimated'
-import { mainLog, monthList, toGroupLogs } from '@/Dummies'
+import Animated, { and, block, cond, Extrapolate, greaterOrEq, interpolate, lessOrEq, runOnJS, set, useAnimatedRef, useAnimatedScrollHandler, useAnimatedStyle, useCode, useDerivedValue, useSharedValue, useValue, Value } from 'react-native-reanimated'
+import { GroupedLogType, LoggingType, LogHelper, LogType, mainLog, MonthGroupedLogType } from '@/Dummies'
 import { useNavigation } from '@react-navigation/native'
-import { ROUTE_PATH } from '@/Routers'
+import { ROUTE_PATH } from '@/Navigators'
+import { format } from 'date-fns'
+import DashedLine from 'react-native-dashed-line'
 
 
 /* 
@@ -28,7 +30,11 @@ TODO
 [ ] Add animation on top when scroll
 [ ] Change to flat list for approach better performance
 [ ] fix scroll month snap
-[ ] add translation for all text components
+[ ] add translation for all text
+[ ] Move logging to redux, push to state, can reduce re-render and rerun the js `data`
+[X] fix rest of the width in OneLog component
+[ ] add animation when scroll
+[ ] add staggered animation when scroll in EachDay component
 */
 
 const RAW_BANNER_HEIGHT = 220
@@ -47,12 +53,21 @@ const MONTH_TOP = IS_ANDROID ? 292 - STATUS_BAR_HEIGHT : 292
 const MONTH_TOP_SCROLLED = SCROLLED_BALANCE_HERO_HEIGHT - 20
 const MONTH_START_Y_POSITION = 184
 
+const DUMMIES_LOG = new LogHelper(mainLog)
+const DUMMIES_LOG_IN_MONTH = DUMMIES_LOG.inMonthLogs.reverse()
+const DUMMIES_MONTH_LIST = DUMMIES_LOG.getListOfMonth()
+
 const HomeContainer = () => {
   const { Colors, Fonts, Common } = useTheme()
+
+  const [tabs, setTabs] = useState(DUMMIES_MONTH_LIST)
+  const [selectedTab, setSelectedTab] = useState(0)
+
 
   const { t } = useTranslation()
 
   const scroll = useSharedValue(0)
+
 
   const iosStatusbarHeight = useSafeAreaInsets().top
 
@@ -86,6 +101,15 @@ const HomeContainer = () => {
     }
   })
 
+  const handleAddNewLog = () => {
+    navigator.navigate(ROUTE_PATH.NEW_LOG, {})
+  }
+
+  const onMeasure = (key: string, y: number, index: number) => {
+    const newTabs = [...tabs]
+    newTabs[index].y = y
+    setTabs(newTabs)
+  }
 
   const onScroll = useAnimatedScrollHandler({
     onScroll: (e) => {
@@ -93,10 +117,11 @@ const HomeContainer = () => {
     }
   })
 
+  // useCode(() => block([
+  //   set()
+  // ]), [])
 
-  const handleAddNewLog = () => {
-    navigator.navigate(ROUTE_PATH.NEW_LOG, {})
-  }
+
 
   const HeaderComp = (
     <Animated.View style={[{ flexGrow: 1 }]} >
@@ -110,7 +135,7 @@ const HomeContainer = () => {
             </Text>
           </View>
 
-          <View style={[{ flexDirection: "row", position: "absolute", bottom: CALCULATION_BOTTOM, marginHorizontal: 12 }]}>
+          <View style={[{ flexDirection: "row", position: "absolute", bottom: CALCULATION_BOTTOM, marginHorizontal: Common.container.paddingHorizontal }]}>
             <Text style={[{ color: Colors.error }]}>*</Text>
             <Text style={[Fonts.bodyXSmall, { marginLeft: 2, color: chroma(Colors.text).alpha(.5).hex() }]}>
               {t('home.calculationInMonth')}
@@ -120,7 +145,7 @@ const HomeContainer = () => {
         <View style={[{ position: "absolute", zIndex: 2, elevation: 2, width: "100%", flex: 1, top: ABSOLUTE_TOP }]}>
           <View style={[{ marginHorizontal: Common.container.paddingHorizontal, padding: 12, backgroundColor: Colors.white, borderRadius: 12, display: 'flex', flexDirection: "row", }, homeStyle.cashFlow]}>
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingRight: 12, paddingVertical: 8 }}>
-              <RoundIconRocket type='in' />
+              <RoundIconRocket type='income' />
               <View style={[{ marginLeft: 12 }]}>
                 <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashIn')}</Text>
                 <Text style={[Fonts.bodySmall]}>Rp. {moneyFormatter(1000000)}</Text>
@@ -130,7 +155,7 @@ const HomeContainer = () => {
             <View style={[homeStyle.verticalsLine]} />
 
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingLeft: 12, paddingVertical: 8 }}>
-              <RoundIconRocket type='out' />
+              <RoundIconRocket type='expanse' />
               <View style={[{ marginLeft: 12 }]}>
                 <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashOut')}</Text>
                 <Text style={[Fonts.bodySmall]}>- Rp.{moneyFormatter(1000000)}</Text>
@@ -164,17 +189,19 @@ const HomeContainer = () => {
       <Balance style={[onTopHeaderTextStyle]} />
       {/* List Month start*/}
       <Animated.FlatList
-        data={monthList}
+        data={tabs}
         showsHorizontalScrollIndicator={false}
-        style={[Common.container, { position: "absolute", borderBottomColor: Colors.borderColor, borderBottomWidth: .8, backgroundColor: Colors.white, paddingVertical: 12, zIndex: 9999, top: BANNER_HEIGHT + 84, marginTop: 16 }, onTopMonthListStyle]}
+        style={[Common.container, { minWidth: "100%" }, { position: "absolute", borderBottomColor: Colors.borderColor, borderBottomWidth: .8, backgroundColor: Colors.white, paddingVertical: 12, zIndex: 9999, top: BANNER_HEIGHT + 84, marginTop: 16 }, onTopMonthListStyle]}
         keyExtractor={(_, index) => index.toString()}
         horizontal
         renderItem={(item) => (
-          <View style={[!item.index ? Common.backgroundPrimary : {}, { borderRadius: 12, paddingHorizontal: 16, paddingVertical: 4 }, item.index === monthList.length - 1 ? { marginRight: 32 } : {}]}>
-            <Text style={[!item.index ? Fonts.bold : {}]}>
-              {item.item}
+          // TODO
+          // [ ] Add active style and de-active
+          <Animated.View style={[item.index === selectedTab ? { ...Common.backgroundPrimary, paddingHorizontal: 16 } : item.index <= 0 ? { marginRight: 12 } : { marginHorizontal: 12 }, { borderRadius: 12, paddingVertical: 4 }, item.index === tabs.length - 1 ? { marginRight: 32 } : {}]}>
+            <Text style={[item.index === selectedTab ? Fonts.bold : {}, Fonts.bodySmall]}>
+              {item.item.month}
             </Text>
-          </View>
+          </Animated.View>
         )} />
       {/* List Month end */}
 
@@ -182,17 +209,19 @@ const HomeContainer = () => {
       <Animated.FlatList
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
+        // Header
         ListHeaderComponent={HeaderComp}
-        ListHeaderComponentStyle={{ marginBottom: 56 }}
+        ListHeaderComponentStyle={{ marginBottom: 62 }}
+        //Content
         onScroll={onScroll}
-        data={toGroupLogs(mainLog)}
-        renderItem={({ index, item }) => (
-          <View key={index} style={[Common.container]}>
-            <Text>
-              {JSON.stringify(item, null, 2)}
-            </Text>
-          </View>
-        )} />
+        data={DUMMIES_LOG_IN_MONTH}
+        keyExtractor={(item) => item.month}
+        renderItem={({ item, index }) => (
+          <LogList logs={item} measure={y => onMeasure(item.month, y, index)} />
+        )}
+        // Footer
+        ListFooterComponent={<View style={{ marginTop: 120 }} />}
+      />
 
 
       {/* Floating Button */}
@@ -205,6 +234,92 @@ const HomeContainer = () => {
       </TouchableOpacity>
       {/* Floating Button end*/}
     </React.Fragment>
+  )
+}
+
+type LogListProps = {
+  logs: MonthGroupedLogType
+  measure: (value: number) => void
+}
+
+const LogList: React.FC<LogListProps> = ({ logs, measure }) => {
+  const { Common } = useTheme()
+  const viewRef = useRef<View>(null)
+
+  useEffect(() => {
+    viewRef.current?.measure((x, y, width, height, pageX, pageY) => {
+      measure(pageY)
+    })
+  }, [viewRef])
+
+  return (
+    <View style={[Common.container, { flex: 1 }]} ref={viewRef}>
+      {logs.logs.map((log, index) => (
+        <EachDayLog data={log} key={log.day.key} />
+      ))}
+    </View>
+  )
+}
+
+type EachDayLogProps = {
+  data: GroupedLogType
+}
+
+const EachDayLog: React.FC<EachDayLogProps> = ({ data }) => {
+  const { Fonts } = useTheme()
+  return (
+    <Animated.View style={[{ flex: 1, display: "flex", flexDirection: "row" }]}>
+      <View style={{ alignItems: "center" }}>
+        <Animated.View style={[{ justifyContent: "center", width: 28 }]}>
+          <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>
+            {data.day.sortMonth.toUpperCase()}
+          </Text>
+          <Text style={[Fonts.h5, Fonts.bold]}>
+            {data.day.dateNumber}
+          </Text>
+        </Animated.View>
+        {data.logs.length > 1 && (
+          <View style={{
+            flex: 1, width: 1, zIndex: 0,
+            justifyContent: "center"
+          }} >
+            <DashedLine dashLength={10} dashGap={10} dashColor={Colors.borderColor} dashThickness={1.2} axis='vertical' style={{ height: "80%", }} />
+          </View>
+        )}
+      </View>
+      <View style={{ flex: 1, marginLeft: 12 }}>
+        {data.logs.map((log) => (
+          <OneLog log={log} key={log.id} />
+        ))}
+      </View>
+    </Animated.View>
+  )
+}
+
+type OneLogProps = {
+  log: LogType
+}
+
+const OneLog: React.FC<OneLogProps> = ({ log }) => {
+  const { Fonts, Colors } = useTheme()
+  const isIncome = log.type === "income"
+  return (
+    <View style={{ flexDirection: "row", flex: 1, paddingVertical: 6 }}>
+      <RoundIconRocket type={log.type} />
+      <View style={{ justifyContent: "space-between", flex: 1, marginLeft: 16, flexDirection: "row", borderBottomColor: Colors.borderColor, borderBottomWidth: 1.2, paddingBottom: 6 }}>
+        <View style={{ alignSelf: "center" }}>
+          <Text style={[Fonts.bodySmall]}>
+            {log.description}
+          </Text>
+          <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity, marginTop: 4 }]}>
+            {format(log.date, "HH:mm")}
+          </Text>
+        </View>
+        <Text style={[Fonts.bodyXSmall, Fonts.medium, { marginTop: 24, color: isIncome ? Colors.success : Colors.error }]}>
+          {isIncome ? "Rp" : "- Rp"} {moneyFormatter(log.amount)}
+        </Text>
+      </View>
+    </View>
   )
 }
 
@@ -273,9 +388,6 @@ const homeStyle = StyleSheet.create({
     shadowRadius: 16,
     shadowColor: "rgb(33, 37, 41)",
     elevation: 3,
-
-    // box- shadow: 0px 4px 16px rgba(33, 37, 41, 0.1);
-    // border- radius: 12px;
   }
 
 })
@@ -285,9 +397,9 @@ export default HomeContainer
 
 
 // Icon rounded
-const RoundIconRocket = (props: { type: "in" | "out" }) => {
-  const color: string = props.type === "in" ? useTheme().Colors.success : useTheme().Colors.error
-  const icon: JSX.Element = props.type === "in" ? <CashReceiveIcon color={color} /> : <CashOutIcon color={color} />
+const RoundIconRocket = (props: { type: LoggingType }) => {
+  const color: string = props.type === "income" ? useTheme().Colors.success : useTheme().Colors.error
+  const icon: JSX.Element = props.type === "income" ? <CashReceiveIcon color={color} /> : <CashOutIcon color={color} />
   const backgroundColor: string = chroma(color).alpha(.1).hex()
 
   return (

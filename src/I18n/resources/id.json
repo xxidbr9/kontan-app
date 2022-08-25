@@ -30,7 +30,7 @@
     "dec": "Des"
   },
   "home": {
-    "greeting": "Hai",
+    "greeting": "Halo",
     "say": "Selamat {{time}}",
     "cashIn": "Uang masuk",
     "cashOut": "Uang keluar",

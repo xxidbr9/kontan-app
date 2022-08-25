@@ -13,8 +13,8 @@ import { Brand } from '@/Components'
 import { useTheme } from '@/Hooks'
 import { useLazyFetchOneQuery } from '@/Services/modules/users'
 import { changeTheme, ThemeState } from '@/Store/Theme'
-import { navigator } from '@/Navigators'
-import { ROUTE_PATH } from '@/Routers'
+import { navigator, ROUTE_PATH } from '@/Navigators'
+
 
 const ExampleContainer = () => {
   const { t } = useTranslation()

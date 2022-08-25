@@ -5,7 +5,7 @@ import { useTheme } from '@/Hooks'
 import { Brand, Loading } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset } from '@/Navigators/utils'
-import { ROUTE_PATH } from '@/Routers'
+import { ROUTE_PATH } from '@/Navigators'
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 
 
