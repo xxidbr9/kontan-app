@@ -18,7 +18,8 @@ export const Colors = {
   success: '#16D24B',
   error: '#F34D18',
   borderColor: "#E1E1E1",
-  textOpacity: "rgba(33, 37, 41, 0.5)"
+  textOpacity: "rgba(33, 37, 41, 0.5)",
+  btnDisable: "#D9D9D9",
 }
 
 export const NavigationColors = {

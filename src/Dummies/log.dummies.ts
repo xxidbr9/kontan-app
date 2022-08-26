@@ -1,7 +1,7 @@
 import 'react-native-get-random-values'
 import { nanoid } from "nanoid"
 
-export type LoggingType = 'expanse' | 'income'
+export type LoggingType = 'expense' | 'income'
 
 export type LogType = {
   id: string,
@@ -14,63 +14,63 @@ export type LogType = {
 export const mainLog: LogType[] = [
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 10000,
     date: new Date(2021, 4, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 10000,
     date: new Date(2022, 4, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 10000,
     date: new Date(2022, 4, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 10000,
     date: new Date(2022, 5, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 10000,
     date: new Date(2022, 6, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 10000,
     date: new Date(2022, 6, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 10000,
     date: new Date(2022, 6, 21, 21, 20),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 20000,
     date: new Date(2022, 6, 21, 12, 20),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
-    type: 'expanse',
+    type: 'expense',
     amount: 20000,
     date: new Date(2022, 6, 21, 12, 20),
     description: 'Jajan makanan',

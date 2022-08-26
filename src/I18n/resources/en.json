@@ -16,7 +16,9 @@
     "cashIn": "Cash in",
     "cashOut": "Cash out",
     "yourBalance": "Your balance",
-    "calculationInMonth": "Calculation in a month"
+    "calculationInMonth": "Calculation in a month",
+    "note": "Notes",
+    "seeMore": "See more"
   },
   "time": {
     "morning": "Morning",
@@ -37,5 +39,15 @@
     "oct": "Oct",
     "nov": "Nov",
     "dec": "Dec"
+  },
+  "newTransaction": {
+    "description": "Description",
+    "whatNeedWrite": "What do you want to write?",
+    "placeholderText": "Write a note : Dinner 🍕",
+    "noteType": "Note type",
+    "noteTypeDescription": "Choose which one you want to write, income or expense",
+    "income": "Income +",
+    "expense": "Expense -",
+    "save": "Save"
   }
 }

@@ -8,14 +8,21 @@ export default function <C>({ Colors, Gutters, Layout }: CommonParams<C>) {
     paddingVertical:12,
     backgroundColor: Colors.primary,
   }
+
   const rounded = {
     ...base,
     borderRadius: 20,
   }
 
+  const roundedDisable = {
+    ...rounded,
+    backgroundColor: Colors.btnDisable,
+  }
+
   return StyleSheet.create({
     base,
     rounded,
+    roundedDisable,
     outline: {
       ...base,
       backgroundColor: Colors.transparent,

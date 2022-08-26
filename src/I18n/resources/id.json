@@ -35,7 +35,19 @@
     "cashIn": "Uang masuk",
     "cashOut": "Uang keluar",
     "yourBalance": "Saldo kamu",
-    "calculationInMonth": "Kalkulasi dalam sebulan"
+    "calculationInMonth": "Kalkulasi dalam sebulan",
+    "note": "Catatan",
+    "seeMore": "Lihat statistik"
   },
-  "hello": "Hello dunia"
+  "hello": "Hello dunia",
+  "newTransaction": {
+    "description": "Deskripsi",
+    "whatNeedWrite": "Apa yang ingin kamu catat?",
+    "placeholderText": "Tulis catatan : Buat makan malam 🍔",
+    "noteType": "Jenis catatan",
+    "noteTypeDescription": "Pilih mana yang ingin kamu catat, penambahan atau pengurangan saldo",
+    "income": "Tambah saldo +",
+    "expense": "Kurangi saldo -",
+    "save": "Simpan"
+  }
 }

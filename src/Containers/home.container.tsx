@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, StatusBar, Platform, TouchableOpacity, NativeSyntheticEvent, NativeScrollEvent, StyleProp, ViewStyle, Button } from 'react-native'
-import React, { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react'
-import { useDebouncedCallback, useTheme } from '@/Hooks'
+import { View, Text, StyleSheet, StatusBar, Platform, TouchableOpacity, StyleProp, ViewStyle } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { useTheme } from '@/Hooks'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
 import { CashReceiveIcon, CashOutIcon, MainAddIcon } from '@/Assets/Svgs'
@@ -8,14 +8,11 @@ import chroma from 'chroma-js'
 import { dayOrNight, moneyFormatter } from '@/Helpers'
 import { Colors } from '@/Theme/Variables'
 import { navigator } from '@/Navigators'
-import { FlatList, ScrollView } from 'react-native-gesture-handler'
-import Animated, { Adaptable, and, block, cond, Extrapolate, greaterOrEq, interpolate, lessOrEq, lessThan, multiply, runOnJS, runOnUI, set, useAnimatedRef, useAnimatedScrollHandler, useAnimatedStyle, useCode, useDerivedValue, useSharedValue, useValue, Value } from 'react-native-reanimated'
+import Animated, { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 import { GroupedLogType, LoggingType, LogHelper, LogType, mainLog, MonthGroupedLogType } from '@/Dummies'
-import { useNavigation } from '@react-navigation/native'
 import { ROUTE_PATH } from '@/Navigators'
 import { format } from 'date-fns'
 import DashedLine from 'react-native-dashed-line'
-import { ta } from 'date-fns/locale'
 
 /* 
 TODO
@@ -43,7 +40,6 @@ const STATUS_BAR_HEIGHT = IS_ANDROID ? StatusBar.currentHeight || 0 : 0
 const BANNER_HEIGHT = IS_ANDROID ? RAW_BANNER_HEIGHT - STATUS_BAR_HEIGHT - 4 : Platform.OS === "ios" ? RAW_BANNER_HEIGHT : RAW_BANNER_HEIGHT
 const PADDING_TOP = IS_ANDROID ? 24 : 12
 const ABSOLUTE_TOP = IS_ANDROID ? 150 : 184
-// const CONTAINER_PADDING = 16
 const BALANCE_TOP = IS_ANDROID ? 72 : 98
 const CALCULATION_BOTTOM = IS_ANDROID ? 48 : 44
 const SCROLLED_BALANCE_TOP = IS_ANDROID ? 56 - STATUS_BAR_HEIGHT : 56
@@ -67,7 +63,6 @@ const HomeContainer = () => {
   const { t } = useTranslation()
 
   const scroll = useSharedValue(0)
-  const scrollValue = new Value(0)
 
   const iosStatusbarHeight = useSafeAreaInsets().top
 
@@ -102,10 +97,10 @@ const HomeContainer = () => {
   })
 
   const handleAddNewLog = () => {
-    navigator.navigate(ROUTE_PATH.NEW_LOG, {})
+    navigator.navigate(ROUTE_PATH.NEW_TRANSACTION, {})
   }
 
-  const onMeasure = (key: string, y: number, index: number) => {
+  const onMeasure = (_key: string, y: number, index: number) => {
     const newTabs = [...tabs]
     newTabs[index].y = y
     setTabs(newTabs)
@@ -137,8 +132,11 @@ const HomeContainer = () => {
             </Text>
           </View>
         </SafeAreaView>
+
+        {/* Cash flow start */}
         <View style={[{ position: "absolute", zIndex: 2, elevation: 2, width: "100%", flex: 1, top: ABSOLUTE_TOP }]}>
           <View style={[{ marginHorizontal: Common.container.paddingHorizontal, padding: 12, backgroundColor: Colors.white, borderRadius: 12, display: 'flex', flexDirection: "row", }, homeStyle.cashFlow]}>
+
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingRight: 12, paddingVertical: 8 }}>
               <RoundIconRocket type='income' />
               <View style={[{ marginLeft: 12 }]}>
@@ -150,7 +148,7 @@ const HomeContainer = () => {
             <View style={[homeStyle.verticalsLine]} />
 
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "50%", paddingLeft: 12, paddingVertical: 8 }}>
-              <RoundIconRocket type='expanse' />
+              <RoundIconRocket type='expense' />
               <View style={[{ marginLeft: 12 }]}>
                 <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashOut')}</Text>
                 <Text style={[Fonts.bodySmall]}>- Rp.{moneyFormatter(1000000)}</Text>
@@ -158,20 +156,23 @@ const HomeContainer = () => {
             </View>
           </View>
         </View>
+        {/* Cash flow end */}
+
       </View>
 
-      {/* Content Start */}
+      {/* Content Header Start */}
       <View style={[Common.container, { paddingTop: 66, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }]}>
         <Text style={[Fonts.h6, Fonts.bold]}>
-          Catatan
+          {t('home.note')}
         </Text>
         <TouchableOpacity activeOpacity={.8} onPress={() => navigator.navigate("Skia", {})}>
           <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>
-            Lihat
+            {t('home.seeMore')}
           </Text>
         </TouchableOpacity>
       </View>
-      {/* Content End */}
+      {/* Content Header End */}
+
     </Animated.View>
   )
 
@@ -193,7 +194,7 @@ const HomeContainer = () => {
           // TODO
           // [ ] Add active style and de-active
           <Animated.View style={[item.index === selectedTab ? { ...Common.backgroundPrimary, paddingHorizontal: 16 } : item.index <= 0 ? { marginRight: 12 } : { marginHorizontal: 12 }, { borderRadius: 12, paddingVertical: 4 }, item.index === tabs.length - 1 ? { marginRight: 32 } : {}]}>
-            <Text style={[item.index === selectedTab ? Fonts.bold : {}, Fonts.bodySmall]}>
+            <Text style={[item.index === selectedTab ? Fonts.bold : { color: Colors.textOpacity }, Fonts.bodySmall]}>
               {item.item.month}
             </Text>
           </Animated.View>
@@ -242,14 +243,14 @@ const LogList: React.FC<LogListProps> = ({ logs, measure }) => {
   const viewRef = useRef<View>(null)
 
   useEffect(() => {
-    viewRef.current?.measure((x, y, width, height, pageX, pageY) => {
+    viewRef.current?.measure((_x, _y, _width, _height, _pageX, pageY) => {
       measure(pageY)
     })
   }, [viewRef])
 
   return (
     <View style={[Common.container, { flex: 1 }]} ref={viewRef}>
-      {logs.logs.map((log, index) => (
+      {logs.logs.map((log) => (
         <EachDayLog data={log} key={log.day.key} />
       ))}
     </View>

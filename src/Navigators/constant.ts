@@ -1,6 +1,6 @@
 const MAIN = 'main';
 const STARTUP = 'startup';
-const NEW_LOG = 'new-log'
+const NEW_TRANSACTION = 'new-transaction'
 
 
 export const MAIN_TAB = {
@@ -10,7 +10,7 @@ export const MAIN_TAB = {
 const ROUTE_PATH = {
   MAIN,
   STARTUP,
-  NEW_LOG
+  NEW_TRANSACTION
 } as const
 
 export default ROUTE_PATH

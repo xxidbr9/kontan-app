@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Image, StatusBar, View, Text, Platform } from 'react-native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import { HomeContainer, SkiaContainer, StartupContainer, NewLogContainer } from '@/Containers'
+import { HomeContainer, SkiaContainer, StartupContainer, NewTransactionContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { navigationRef } from './utils'
 import { MAIN_TAB, ROUTE_PATH } from '@/Navigators'
@@ -59,8 +59,8 @@ const ApplicationNavigator = () => {
         />
 
         <Stack.Screen
-          name={ROUTE_PATH.NEW_LOG}
-          component={NewLogContainer}
+          name={ROUTE_PATH.NEW_TRANSACTION}
+          component={NewTransactionContainer}
           options={{
             headerShown: true,
             title: "Catatan baru",

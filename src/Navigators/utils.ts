@@ -15,7 +15,7 @@ type RootStackParamList = {
   [MAIN_TAB.Home]: undefined,
   Home: undefined,
   Skia: undefined,
-  [ROUTE_PATH.NEW_LOG]: undefined
+  [ROUTE_PATH.NEW_TRANSACTION]: undefined
 }
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>()
