@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, StatusBar, Platform, TouchableOpacity, NativeSyntheticEvent, NativeScrollEvent, StyleProp, ViewStyle, Button } from 'react-native'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useTheme } from '@/Hooks'
+import React, { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react'
+import { useDebouncedCallback, useTheme } from '@/Hooks'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
 import { CashReceiveIcon, CashOutIcon, MainAddIcon } from '@/Assets/Svgs'
@@ -9,13 +9,13 @@ import { dayOrNight, moneyFormatter } from '@/Helpers'
 import { Colors } from '@/Theme/Variables'
 import { navigator } from '@/Navigators'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
-import Animated, { and, block, cond, Extrapolate, greaterOrEq, interpolate, lessOrEq, runOnJS, set, useAnimatedRef, useAnimatedScrollHandler, useAnimatedStyle, useCode, useDerivedValue, useSharedValue, useValue, Value } from 'react-native-reanimated'
+import Animated, { Adaptable, and, block, cond, Extrapolate, greaterOrEq, interpolate, lessOrEq, lessThan, multiply, runOnJS, runOnUI, set, useAnimatedRef, useAnimatedScrollHandler, useAnimatedStyle, useCode, useDerivedValue, useSharedValue, useValue, Value } from 'react-native-reanimated'
 import { GroupedLogType, LoggingType, LogHelper, LogType, mainLog, MonthGroupedLogType } from '@/Dummies'
 import { useNavigation } from '@react-navigation/native'
 import { ROUTE_PATH } from '@/Navigators'
 import { format } from 'date-fns'
 import DashedLine from 'react-native-dashed-line'
-
+import { ta } from 'date-fns/locale'
 
 /* 
 TODO
@@ -67,7 +67,7 @@ const HomeContainer = () => {
   const { t } = useTranslation()
 
   const scroll = useSharedValue(0)
-
+  const scrollValue = new Value(0)
 
   const iosStatusbarHeight = useSafeAreaInsets().top
 
@@ -111,17 +111,12 @@ const HomeContainer = () => {
     setTabs(newTabs)
   }
 
+  // const onScroll2 = onScrollEvent({ y: scrollValue })
   const onScroll = useAnimatedScrollHandler({
     onScroll: (e) => {
       scroll.value = e.contentOffset.y
     }
   })
-
-  // useCode(() => block([
-  //   set()
-  // ]), [])
-
-
 
   const HeaderComp = (
     <Animated.View style={[{ flexGrow: 1 }]} >
@@ -421,3 +416,4 @@ const iconStyle = StyleSheet.create({
     height: 36
   }
 })
+

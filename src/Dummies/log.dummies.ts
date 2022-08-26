@@ -16,7 +16,7 @@ export const mainLog: LogType[] = [
     id: nanoid(),
     type: 'expanse',
     amount: 10000,
-    date: new Date(2022, 4, 21, 10, 11),
+    date: new Date(2021, 4, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
