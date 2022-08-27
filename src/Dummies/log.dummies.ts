@@ -5,7 +5,7 @@ export type LoggingType = 'expense' | 'income'
 
 export type LogType = {
   id: string,
-  date: Date,
+  createdAt: Date,
   type: LoggingType,
   amount: number,
   description: string,
@@ -16,119 +16,119 @@ export const mainLog: LogType[] = [
     id: nanoid(),
     type: 'expense',
     amount: 10000,
-    date: new Date(2021, 4, 21, 10, 11),
+    createdAt: new Date(2021, 4, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'expense',
     amount: 10000,
-    date: new Date(2022, 4, 21, 10, 11),
+    createdAt: new Date(2022, 4, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'expense',
     amount: 10000,
-    date: new Date(2022, 4, 21, 10, 11),
+    createdAt: new Date(2022, 4, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'expense',
     amount: 10000,
-    date: new Date(2022, 5, 21, 10, 11),
+    createdAt: new Date(2022, 5, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'expense',
     amount: 10000,
-    date: new Date(2022, 6, 21, 10, 11),
+    createdAt: new Date(2022, 6, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'expense',
     amount: 10000,
-    date: new Date(2022, 6, 21, 10, 11),
+    createdAt: new Date(2022, 6, 21, 10, 11),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'expense',
     amount: 10000,
-    date: new Date(2022, 6, 21, 21, 20),
+    createdAt: new Date(2022, 6, 21, 21, 20),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'expense',
     amount: 20000,
-    date: new Date(2022, 6, 21, 12, 20),
+    createdAt: new Date(2022, 6, 21, 12, 20),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'expense',
     amount: 20000,
-    date: new Date(2022, 6, 21, 12, 20),
+    createdAt: new Date(2022, 6, 21, 12, 20),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'income',
     amount: 30000,
-    date: new Date(2022, 6, 21),
+    createdAt: new Date(2022, 6, 21),
     description: 'Jajan makanan',
   },
   {
     id: nanoid(),
     type: 'income',
     amount: 30000,
-    date: new Date(2022, 6, 21),
+    createdAt: new Date(2022, 6, 21),
     description: 'Duid masuk',
   },
   {
     id: nanoid(),
     type: 'income',
     amount: 30000,
-    date: new Date(2022, 7, 22),
+    createdAt: new Date(2022, 7, 22),
     description: 'Tambahan uang',
   },
   {
     id: nanoid(),
     type: 'income',
     amount: 30000,
-    date: new Date(2022, 7, 27, 9, 22),
+    createdAt: new Date(2022, 7, 27, 9, 22),
     description: 'Tambahan uang',
   },
   {
     id: nanoid(),
     type: 'income',
     amount: 30000,
-    date: new Date(2022, 7, 27, 9, 22),
+    createdAt: new Date(2022, 7, 27, 9, 22),
     description: 'Tambahan uang',
   },
   {
     id: nanoid(),
     type: 'income',
     amount: 30000,
-    date: new Date(2022, 7, 12, 9, 22),
+    createdAt: new Date(2022, 7, 12, 9, 22),
     description: 'Tambahan uang',
   },
   {
     id: nanoid(),
     type: 'income',
     amount: 30000,
-    date: new Date(2022, 7, 12, 9, 22),
+    createdAt: new Date(2022, 7, 12, 9, 22),
     description: 'Tambahan uang',
   },
   {
     id: nanoid(),
     type: 'income',
     amount: 30000,
-    date: new Date(2022, 7, 18, 9, 22),
+    createdAt: new Date(2022, 7, 18, 9, 22),
     description: 'Tambahan uang',
   },
 ]
@@ -148,13 +148,13 @@ export const toGroupLogs = (logs: LogType[]): GroupedLogType[] => {
   const groupedLogs: GroupedLogType[] = []
   const groupedLogsMap = new Map<string, GroupedLogType>()
   for (const log of logs) {
-    const dateNumber = log.date.getDate()
-    const sortMonth = log.date.toLocaleString('default', { month: 'short' }).toLowerCase()
+    const dateNumber = log.createdAt.getDate()
+    const sortMonth = log.createdAt.toLocaleString('default', { month: 'short' }).toLowerCase()
     const newDate = new Date(Date.now())
-    const isNowYear = newDate.getFullYear() === log.date.getFullYear()
-    const years = !isNowYear ? log.date.getFullYear() : ""
+    const isNowYear = newDate.getFullYear() === log.createdAt.getFullYear()
+    const years = !isNowYear ? log.createdAt.getFullYear() : ""
 
-    const newLongMonth = log.date.toLocaleString('default', { month: 'long' }).toLowerCase()
+    const newLongMonth = log.createdAt.toLocaleString('default', { month: 'long' }).toLowerCase()
     const longMonth = !isNowYear ? [newLongMonth, years].join(" ") : newLongMonth
 
     const key = `${dateNumber}-${sortMonth}-${years}`

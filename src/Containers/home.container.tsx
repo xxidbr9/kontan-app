@@ -13,6 +13,9 @@ import { GroupedLogType, LoggingType, LogHelper, LogType, mainLog, MonthGroupedL
 import { ROUTE_PATH } from '@/Navigators'
 import { format } from 'date-fns'
 import DashedLine from 'react-native-dashed-line'
+import realmConfig from '@/Models'
+import { BALANCE_COLLECTION_NAME } from '@/Models/balance.schema'
+import TransactionSchema, { TRANSACTION_COLLECTION_NAME } from '@/Models/transaction.schema'
 
 /* 
 TODO
@@ -32,6 +35,8 @@ TODO
 [X] fix rest of the width in OneLog component
 [ ] add animation when scroll
 [ ] add staggered animation when scroll in EachDay component
+[ ] do redux state, for update global state
+
 */
 
 const RAW_BANNER_HEIGHT = 220
@@ -49,14 +54,65 @@ const MONTH_TOP = IS_ANDROID ? 292 - STATUS_BAR_HEIGHT : 292
 const MONTH_TOP_SCROLLED = SCROLLED_BALANCE_HERO_HEIGHT - 20
 const MONTH_START_Y_POSITION = 184
 
-const DUMMIES_LOG = new LogHelper(mainLog)
-const DUMMIES_LOG_IN_MONTH = DUMMIES_LOG.inMonthLogs.reverse()
-const DUMMIES_MONTH_LIST = DUMMIES_LOG.getListOfMonth()
+type TransactionType = {
+  id: string,
+  type: LoggingType,
+  amount: number,
+  createdAt: Date,
+  description: string
+}
+
 
 const HomeContainer = () => {
+
+  const realmRef = useRef<Realm | null>(null)
+  const [logs, setLogs] = useState<MonthGroupedLogType[]>([])
+  const [totalBalance, setTotalBalance] = useState(0)
+  const [tabs, setTabs] = useState<{ month: string, y: number }[]>([])
+  const [totalIncome, setTotalIncome] = useState(0)
+  const [totalExpense, setTotalExpense] = useState(0)
+
+  useEffect(() => {
+    const realm = Realm.open(realmConfig).then(realm => {
+      realmRef.current = realm
+      return realm
+    })
+
+    Promise.all([
+      realm.then((r) => r.objects(BALANCE_COLLECTION_NAME) as Realm.Results<{ id: string, total: number }>),
+      realm.then((r) => r.objects(TRANSACTION_COLLECTION_NAME).sorted('createdAt', true)) as any as Realm.Results<TransactionType>,
+      // TODO, add limit with month start and end date
+      realm.then((r) => r.objects(TRANSACTION_COLLECTION_NAME).filtered('type == "income"')) as any as Realm.Results<TransactionType>,
+      realm.then((r) => r.objects(TRANSACTION_COLLECTION_NAME).filtered('type == "expense"')) as any as Realm.Results<TransactionType>,
+    ]).then(([balance, transaction, incomes, expenses]) => {
+      setTotalBalance(balance.reduce((a, b) => a + b.total, 0))
+
+      const newTransaction: LogType[] = transaction.map((t) => ({
+        createdAt: new Date(t.createdAt),
+        amount: t.amount,
+        description: t.description,
+        id: t.id,
+        type: t.type,
+      }))
+
+      const newLog = new LogHelper(newTransaction)
+
+
+      setLogs(newLog.inMonthLogs)
+      setTabs(newLog.getListOfMonth())
+      setTotalIncome(incomes.reduce((a, b) => a + b.amount, 0))
+      setTotalExpense(expenses.reduce((a, b) => a + b.amount, 0))
+    })
+
+    return () => {
+      realm.then(realm => realm.close())
+    }
+  }, [])
+
+
+
   const { Colors, Fonts, Common } = useTheme()
 
-  const [tabs, setTabs] = useState(DUMMIES_MONTH_LIST)
   const [selectedTab, setSelectedTab] = useState(0)
 
 
@@ -102,8 +158,11 @@ const HomeContainer = () => {
 
   const onMeasure = (_key: string, y: number, index: number) => {
     const newTabs = [...tabs]
-    newTabs[index].y = y
-    setTabs(newTabs)
+    if (!!newTabs.length) {
+      newTabs[index].y = y
+      setTabs(newTabs)
+    }
+
   }
 
   // const onScroll2 = onScrollEvent({ y: scrollValue })
@@ -141,7 +200,7 @@ const HomeContainer = () => {
               <RoundIconRocket type='income' />
               <View style={[{ marginLeft: 12 }]}>
                 <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashIn')}</Text>
-                <Text style={[Fonts.bodySmall]}>Rp. {moneyFormatter(1000000)}</Text>
+                <Text style={[Fonts.bodySmall]}>Rp. {moneyFormatter(totalIncome)}</Text>
               </View>
             </View>
 
@@ -151,7 +210,7 @@ const HomeContainer = () => {
               <RoundIconRocket type='expense' />
               <View style={[{ marginLeft: 12 }]}>
                 <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity }]}>{t('home.cashOut')}</Text>
-                <Text style={[Fonts.bodySmall]}>- Rp.{moneyFormatter(1000000)}</Text>
+                <Text style={[Fonts.bodySmall]}>- Rp.{moneyFormatter(totalExpense)}</Text>
               </View>
             </View>
           </View>
@@ -182,7 +241,7 @@ const HomeContainer = () => {
       <View style={{ height: iosStatusbarHeight, position: "absolute", width: "100%", backgroundColor: Colors.primary, zIndex: 1 }} />
       <Animated.View style={[{ position: "absolute", zIndex: 10, width: "100%", backgroundColor: Colors.primary }, stickyViewStyle]} />
       <Animated.View style={[{ position: "absolute", zIndex: 9999, width: "100%", backgroundColor: Colors.primary, height: SCROLLED_BALANCE_HERO_HEIGHT }, onTopHeaderStyle]} />
-      <Balance style={[onTopHeaderTextStyle]} />
+      <Balance style={[onTopHeaderTextStyle]} balance={totalBalance} />
       {/* List Month start*/}
       <Animated.FlatList
         data={tabs}
@@ -210,7 +269,7 @@ const HomeContainer = () => {
         ListHeaderComponentStyle={{ marginBottom: 62 }}
         //Content
         onScroll={onScroll}
-        data={DUMMIES_LOG_IN_MONTH}
+        data={logs}
         keyExtractor={(item) => item.month}
         renderItem={({ item, index }) => (
           <LogList logs={item} measure={y => onMeasure(item.month, y, index)} />
@@ -308,7 +367,7 @@ const OneLog: React.FC<OneLogProps> = ({ log }) => {
             {log.description}
           </Text>
           <Text style={[Fonts.bodyXSmall, { color: Colors.textOpacity, marginTop: 4 }]}>
-            {format(log.date, "HH:mm")}
+            {format(log.createdAt, "HH:mm")}
           </Text>
         </View>
         <Text style={[Fonts.bodyXSmall, Fonts.medium, { marginTop: 24, color: isIncome ? Colors.success : Colors.error }]}>
@@ -326,7 +385,7 @@ type BalanceProps = {
   balance?: number
 }
 
-const Balance: React.FC<BalanceProps> = ({ style, balance = 10000000 }) => {
+const Balance: React.FC<BalanceProps> = ({ style, balance = 0 }) => {
   const { t } = useTranslation()
   const { Fonts, Common } = useTheme()
   return (

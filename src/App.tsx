@@ -8,7 +8,7 @@ import './I18n'
 import { useTranslation } from 'react-i18next'
 import * as RNLocalize from "react-native-localize";
 import RNBootSplash from "react-native-bootsplash";
-import { StatusBar, Platform } from 'react-native'
+import { StatusBar } from 'react-native'
 import { Colors } from './Theme/Variables'
 
 
@@ -23,6 +23,7 @@ const App = () => {
     if (locales.length > 0) i18n.changeLanguage(locales[0].languageCode);
 
     (async () => {
+
       await new Promise(res => {
         setTimeout(() => {
           res(true)
@@ -30,8 +31,8 @@ const App = () => {
         }, 1000)
       })
     })()
-
   }, [])
+
 
   return (
     <Provider store={store}>

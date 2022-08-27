@@ -1,6 +1,11 @@
 import { PencilIcon } from '@/Assets/Svgs'
 import { LoggingType } from '@/Dummies'
 import { useTheme } from '@/Hooks'
+import realmConfig from '@/Models'
+import realm from '@/Models'
+import { BALANCE_COLLECTION_NAME } from '@/Models/balance.schema'
+import TransactionSchema, { TRANSACTION_COLLECTION_NAME } from '@/Models/transaction.schema'
+import { nanoid } from 'nanoid'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, Text, TextInput, TouchableWithoutFeedback, Pressable, Alert } from 'react-native'
@@ -17,6 +22,7 @@ TODO
 [ ] add category type
 [ ] constant OS on globals
 - [ ] category bottom sheet for create or pick existing ones
+[ ] change realm to redux action
 
 */
 
@@ -31,6 +37,8 @@ const NewTransactionContainer = (props: NewTransactionContainerProps) => {
   const [moneyValue, setMoneyValue] = useState<number | null>(null)
   const [desc, setDesc] = useState('')
   const [selectedLogType, setSelectedLogType] = useState<LoggingType | null>(null)
+  const realmRef = useRef<Realm | null>(null)
+
 
   const isBtnDisabled = useMemo(() => {
     return moneyValue === null || moneyValue === 0 || selectedLogType === null
@@ -45,10 +53,52 @@ const NewTransactionContainer = (props: NewTransactionContainerProps) => {
     inputMoneyRef.current?.focus()
   }, [])
 
+  useEffect(() => {
+    const realm = Realm.open(realmConfig).then(realm => {
+      realmRef.current = realm
+      return realm
+    })
+
+    return () => {
+      realm.then(realm => realm.close())
+    }
+  }, [])
 
   const storeToDB = useCallback(async () => {
-    // props.transaction.addNewTransaction(moneyValue || 0, desc, selectedLogType as string)
-  }, [moneyValue, desc, selectedLogType])
+    const realm = realmRef.current as Realm
+    realm.write(() => {
+      realm.create(TRANSACTION_COLLECTION_NAME, {
+        id: nanoid(),
+        description: desc,
+        amount: moneyValue,
+        type: selectedLogType,
+        createdAt: new Date(Date.now())
+      })
+
+      const balance = realm.objects(BALANCE_COLLECTION_NAME) as Realm.Results<{ id: string, total: number }>
+      if (balance.length > 0) {
+        if (selectedLogType === 'income') {
+          balance[0].total += moneyValue || 0
+        } else if (selectedLogType === 'expense') {
+          balance[0].total -= moneyValue || 0
+        }
+      } else {
+        if (selectedLogType === 'income') {
+          realm.create(BALANCE_COLLECTION_NAME, {
+            id: nanoid(),
+            total: moneyValue || 0
+          })
+        } else if (selectedLogType === 'expense') {
+          let total = 0
+          total -= moneyValue || 0
+          realm.create(BALANCE_COLLECTION_NAME, {
+            id: nanoid(),
+            total,
+          })
+        }
+      }
+    })
+  }, [moneyValue, desc, selectedLogType, realmRef.current])
 
 
   const handleSubmit = () => {
@@ -106,7 +156,7 @@ const NewTransactionContainer = (props: NewTransactionContainerProps) => {
           </View>
 
           <View style={{ flexDirection: "row", marginTop: 16 }}>
-            {(['expense', 'income'] as LoggingType[]).map((logType, index) => (
+            {(['income', 'expense'] as LoggingType[]).map((logType, index) => (
               <TouchableWithoutFeedback onPress={() => setSelectedLogType(logType)} key={index}>
                 <View style={[{ paddingVertical: 8, paddingHorizontal: 16, borderRadius: 20, borderWidth: 1.2 }, !!index ? { marginLeft: 16 } : {}, selectedLogType === logType ? { backgroundColor: Colors.primary, borderColor: Colors.primary } : { borderColor: Colors.borderColor, backgroundColor: Colors.white },]}>
                   {logType === 'income' ?
